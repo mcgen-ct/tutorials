@@ -5,22 +5,22 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 ## Monte Carlo
 
 ### Build-Your-Own
-* common utilities (MC 1)
-* random number generation (MC 1)
-* integration (MC 1)
-* parton showers (MC 2)
-* matching and merging (MC 2)
-* hadronization (MC 3)
-* phase-space decays (MC 3)
+* common utilities (MC 1, PI)
+* random number generation (MC 1, SM)
+* integration (MC 1, SM)
+* parton showers (MC 2, TM from SH)
+* matching and merging (MC 2, BA from SH)
+* hadronization (MC 3, TM)
+* phase-space decays (MC 3, PI)
 * hard process generation?
   * PDF sampling
   * helicity sampling
-* detector effects (MC 4)
+* detector effects (MC 4, PI)
   * multiple scattering
   * conversions
   * bremsstrahlung?
   * calorimeter showers?
-* detector resconstruction (MC 4)?
+* detector resconstruction (MC 4, MW or PI)
   * track finding
   * track fitting
   * vertex finding
@@ -34,13 +34,13 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 ## Machine Learning
 
 ### Build-Your-Own
-* linear regression (ML 1)
-* logistic regression (ML 1)
+* linear regression (ML 1, MS)
+* logistic regression (ML 1, MS)
 * clustering (ML 1)
 * density estimation (ML 1)
 * boosted decision trees (ML 2)
 * neural networks (ML 2)
-* auto-differentiation (ML 3)
+* auto-differentiation (ML 3, TM)
 
 ### Common Tools
 * PyTorch
