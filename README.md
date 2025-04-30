@@ -36,8 +36,8 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 ### Build-Your-Own
 * linear regression (ML 1, MS)
 * logistic regression (ML 1, MS)
-* clustering (ML 1)
-* density estimation (ML 1)
+* clustering (ML 1, MS)
+* density estimation (ML 1, MS)
 * boosted decision trees (ML 2)
 * neural networks (ML 2)
 * auto-differentiation (ML 3, TM)
