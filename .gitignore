@@ -1,0 +1,11 @@
+# Ignore configuration folders for VS Code.
+.vscode
+.Rproj.user
+
+# Ignore .DS_Store on Mac.
+.DS_Store
+
+# Other temporary and generated files.
+*~
+\#*\#
+*.yoda
