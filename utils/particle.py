@@ -228,6 +228,13 @@ class Particle:
         Initialize the 'Particle' class, given 'data' of type
         'ParticleData' for that particle type, the momentum
         four-vector 'p', and the helicity 'h'.
+
+        Additional members are also available.
+        c: color for this particle.
+        a: anti-color for this particle.
+        t: production vertex for this particle.
+        parents:  list of parents for this particle.
+        children: list of children for this particle.
         """
         from math import sqrt
 
@@ -236,6 +243,11 @@ class Particle:
         if self.p[0] < 0:
             self.p[0] = sqrt(sum([pj**2 for pj in p[1:]]) + data.mass**2)
         self.h = float(h)
+        self.c = 0.
+        self.a = 0.
+        self.t = FourVector(0, 0, 0, 0)
+        self.parents = []
+        self.children = []
 
     ###########################################################################
     # Problem 4(c).
