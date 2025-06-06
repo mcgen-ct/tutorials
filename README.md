@@ -28,8 +28,8 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 * ...
 
 ### Common Tools
-* Pythia
-* Pythia tuning
+* [Pythia](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/worksheet.ipynb)
+* [Pythia tuning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/tuning.ipynb)
 
 ## Machine Learning
 
