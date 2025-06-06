@@ -6,7 +6,7 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 
 ### Build-Your-Own
 * common utilities (MC 1, PI)
-* random number generation (MC 1, SM)
+* [random number generation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/rng.ipynb) (MC 1, SM)
 * integration (MC 1, SM)
 * parton showers (MC 2, TM from SH)
 * matching and merging (MC 2, BA from SH)
@@ -34,12 +34,12 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 ## Machine Learning
 
 ### Build-Your-Own
-* linear regression (ML 1, MS)
-* logistic regression (ML 1, MS)
-* clustering (ML 1, MS)
-* density estimation (ML 1, MS)
+* [linear and logistic regression](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/regression.ipynb) (ML 1, MS)
+* [clustering and density estimation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/cluster.ipynb) (ML 1, MS)
+* [normalizing flows](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/flows.ipynb) (ML ?, MS)
+* [classification](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/classify.ipynb) (ML ?, MS)
 * boosted decision trees (ML 2)
-* neural networks (ML 2)
+* neural networks (ML 2, RG)
 * auto-differentiation (ML 3, TM)
 
 ### Common Tools
@@ -53,9 +53,9 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 * MC 3 (1 hour)
 * MC 4 (1 hour)
 
-* ML 1 (1 hour)
+* MC 1 (1 hour)
   * general introduction
-* ML 2 (1 hour)
+* MC 2 (1 hour)
   * some common tasks
-* ML 3 (1 hour)
+* MC 3 (1 hour)
   * realistic example in MC generator context
