@@ -243,8 +243,8 @@ class Particle:
         if self.p[0] < 0:
             self.p[0] = sqrt(sum([pj**2 for pj in p[1:]]) + data.mass**2)
         self.h = float(h)
-        self.c = 0.
-        self.a = 0.
+        self.c = 0.0
+        self.a = 0.0
         self.t = FourVector(0, 0, 0, 0)
         self.parents = []
         self.children = []
