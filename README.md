@@ -35,7 +35,7 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 
 ### Build-Your-Own
 * [linear and logistic regression](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/regression.ipynb) (ML 1, MS)
-* [clustering and density estimation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/cluster.ipynb) (ML 1, MS)
+* [unsupervised learning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/unsupervised.ipynb) (ML 1, MS)
 * [normalizing flows](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/flows.ipynb) (ML ?, MS)
 * [classification](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/classify.ipynb) (ML ?, MS)
 * boosted decision trees (ML 2)
