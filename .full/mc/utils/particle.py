@@ -1,19 +1,10 @@
-# Import Problem Set 1 classes.
-from ps1 import Vector, Matrix, FourVector
+from .vector import Vector, Matrix, FourVector
 
-
-###############################################################################
-# Problem 1.
-###############################################################################
 class ParticleData:
     """
     The 'ParticleData' class stores all the necessary information to
     define a particle.
     """
-
-    ###########################################################################
-    # Problem 1(a), 1(b), 1(c), 2(d).
-    ###########################################################################
     def __init__(
         self,
         pid=None,
@@ -40,9 +31,6 @@ class ParticleData:
         self.colour = colour
         self.anti = None
 
-    ###########################################################################
-    # Problem 1(e).
-    ###########################################################################
     def __str__(self):
         """
         Return a string to print of this particle data.
@@ -77,20 +65,34 @@ class ParticleData:
             self.charge,
             self.colour,
         )
+    
+    def __neg__(self):
+        """
+        Return the anti-particle data.
+        """
+        if self.anti:
+            return self.anti
+        else:
+            if self.name[-1] == '+':
+                name = self.name[:-1] + '-'
+            elif self.name[-1] == '-':
+                name = self.name[:-1] + '+'
+            else: name = self.name + "bar"
+            return ParticleData(
+                -self.pid,
+                name,
+                self.mass,
+                self.tau,
+                self.spin,
+                -self.charge,
+                self.colour,
+            )
 
-
-###############################################################################
-# Problem 2.
-###############################################################################
 class ParticleDatabase(dict):
     """
     The 'ParticleDatabase' initializes and stores the 'ParticleData' for
     all particle in the 'ParticleData.xml' file from Pythia 8.
     """
-
-    ###########################################################################
-    # Problem 2(a), 2(b).
-    ###########################################################################
     def __init__(self, xmlfile="ParticleData.xml"):
         """
         Read in the particle data from the XML file 'xmlfile'.
@@ -113,9 +115,6 @@ class ParticleDatabase(dict):
                 pstr = ""
         xml.close()
 
-    ###########################################################################
-    # Problem 2(c), 2(d).
-    ###########################################################################
     def add(self, pstr):
         """
         Parses the XML for a particle and adds it to the database.
@@ -167,9 +166,6 @@ class ParticleDatabase(dict):
             adat.anti = pdat
 
 
-###############################################################################
-# Problem 3.
-###############################################################################
 class DiracMatrices(FourVector):
     """
     This class provides the Dirac matrices. Note that this class
@@ -177,10 +173,6 @@ class DiracMatrices(FourVector):
     matrices also transform under the Minkowski metric, just like
     standard four-vectors.
     """
-
-    ###########################################################################
-    # Problem 3(a), 3(b).
-    ###########################################################################
     def __init__(self, v0=None, v1=None, v2=None, v3=None):
         """
         Initialize the Dirac matrices. Ideally this would not be mutable.
@@ -212,17 +204,10 @@ class DiracMatrices(FourVector):
         FourVector.__init__(self, g0, g1, g2, g3)
 
 
-###############################################################################
-# Problem 4.
-###############################################################################
 class Particle:
     """
     This class represents a particle.
     """
-
-    ###########################################################################
-    # Problem 4(a), 4(b).
-    ###########################################################################
     def __init__(self, data, p, h):
         """
         Initialize the 'Particle' class, given 'data' of type
@@ -249,9 +234,6 @@ class Particle:
         self.parents = []
         self.children = []
 
-    ###########################################################################
-    # Problem 4(c).
-    ###########################################################################
     def w(self):
         """
         Return the Dirac spinor for this particle.
@@ -295,9 +277,6 @@ class Particle:
         else:
             return Vector(kappa[0] * hm, kappa[1] * hm, kappa[0] * hp, kappa[1] * hp)
 
-    ###########################################################################
-    # Problem 4(d).
-    ###########################################################################
     def wbar(self):
         """
         Return the bar Dirac spinor for this particle.
@@ -306,18 +285,10 @@ class Particle:
         w[0], w[1], w[2], w[3] = w[2], w[3], w[0], w[1]
         return w
 
-
-###############################################################################
-# Problem 5.
-###############################################################################
 class Integrator:
     """
     This class integrates a two variable function.
     """
-
-    ###########################################################################
-    # Problem 4(a).
-    ###########################################################################
     def __init__(self, f, xmin, xmax, ymin, ymax):
         """
         Initialize the integrator, given a function 'f', a minimum x
@@ -332,9 +303,6 @@ class Integrator:
         self.xdif = xmax - xmin
         self.ydif = ymax - ymin
 
-    ###########################################################################
-    # Problem 4(b).
-    ###########################################################################
     def mc(self, n=1000):
         """
         Perform MC integration for given number of sampling points 'n'.
@@ -348,10 +316,6 @@ class Integrator:
             t += self.f(x, y)
         return t / float(n) * self.xdif * self.ydif
 
-
-###############################################################################
-# Problem 6.
-###############################################################################
 def circle(x, y):
     """
     Return 1 if 'x' and 'y' in a unit circle, 0 otherwise.
@@ -361,10 +325,6 @@ def circle(x, y):
     f = sqrt(1 - x**2)
     return 0 if abs(y) > f else 1
 
-
-###############################################################################
-# Problem 7.
-###############################################################################
 class Annihilate:
     """
     This class defines the cross-section function needed to calculate
