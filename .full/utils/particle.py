@@ -235,12 +235,29 @@ class Particle:
         if self.p[0] < 0:
             self.p[0] = sqrt(sum([pj**2 for pj in p[1:]]) + data.mass**2)
         self.h = float(h)
-        self.c = 0.0
-        self.a = 0.0
+        self.c = 0
+        self.a = 0
         self.t = FourVector(0, 0, 0, 0)
         self.parents = []
         self.children = []
 
+    def __str__(self):
+        """
+        Return a string to print this particle.
+        """
+        return ("%6s: %r\n" * 3 + "h, c, a: %.2e, %i, %i\n") % (
+            "data",
+            self.data,
+            "p",
+            self.p,
+            "t",
+            self.t,
+            self.h,
+            self.c,
+            self.a,
+        )
+
+        
     def w(self):
         """
         Return the Dirac spinor for this particle.
