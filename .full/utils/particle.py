@@ -1,4 +1,4 @@
-from .vector import Vector, Matrix, FourVector
+from vector import Vector, Matrix, FourVector
 
 
 class ParticleData:
