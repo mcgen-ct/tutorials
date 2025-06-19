@@ -2,10 +2,12 @@
 # ------------------------------- Vector -------------------------------- #
 ###########################################################################
 
+
 class Vector:
     """
     The 'Vector' class represents a vector of length 4.
     """
+
     def __str__(self):
         """
         Return a string to print of this vector.
@@ -197,14 +199,17 @@ class Vector:
 
         return sqrt(self**2)
 
+
 ###########################################################################
 # ------------------------------- Matrix -------------------------------- #
 ###########################################################################
+
 
 class Matrix:
     """
     The 'Matrix' class represents a matrix of size 4x4.
     """
+
     def __str__(self):
         """
         Return a string to print of this vector.
@@ -416,14 +421,17 @@ class Matrix:
         u **= i
         return u
 
+
 ###########################################################################
 # ----------------------------- FourVector ------------------------------ #
 ###########################################################################
+
 
 class FourVector(Vector):
     """
     The 'FourVector' class represents a physics four-vector.
     """
+
     def __init__(self, *args):
         """
         Constructs the four-vector from its base Vector class.
@@ -439,10 +447,12 @@ class FourVector(Vector):
             v[i] = -v[i]
         return v
 
+
 class BoostMatrix(Matrix):
     """
     The 'BoostMatrix' class represents a Lorentz boost matrix.
     """
+
     def __init__(self, p=None, mass=None, m0=None, m1=None, m2=None, m3=None):
         """
         Initialise the boost matrix given a momentum four-vector, 'p'. An

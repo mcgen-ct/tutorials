@@ -1,10 +1,12 @@
 from .vector import Vector, Matrix, FourVector
 
+
 class ParticleData:
     """
     The 'ParticleData' class stores all the necessary information to
     define a particle.
     """
+
     def __init__(
         self,
         pid=None,
@@ -65,7 +67,7 @@ class ParticleData:
             self.charge,
             self.colour,
         )
-    
+
     def __neg__(self):
         """
         Return the anti-particle data.
@@ -73,11 +75,12 @@ class ParticleData:
         if self.anti:
             return self.anti
         else:
-            if self.name[-1] == '+':
-                name = self.name[:-1] + '-'
-            elif self.name[-1] == '-':
-                name = self.name[:-1] + '+'
-            else: name = self.name + "bar"
+            if self.name[-1] == "+":
+                name = self.name[:-1] + "-"
+            elif self.name[-1] == "-":
+                name = self.name[:-1] + "+"
+            else:
+                name = self.name + "bar"
             return ParticleData(
                 -self.pid,
                 name,
@@ -88,11 +91,13 @@ class ParticleData:
                 self.colour,
             )
 
+
 class ParticleDatabase(dict):
     """
     The 'ParticleDatabase' initializes and stores the 'ParticleData' for
     all particle in the 'ParticleData.xml' file from Pythia 8.
     """
+
     def __init__(self, xmlfile="ParticleData.xml"):
         """
         Read in the particle data from the XML file 'xmlfile'.
@@ -173,6 +178,7 @@ class DiracMatrices(FourVector):
     matrices also transform under the Minkowski metric, just like
     standard four-vectors.
     """
+
     def __init__(self, v0=None, v1=None, v2=None, v3=None):
         """
         Initialize the Dirac matrices. Ideally this would not be mutable.
@@ -208,6 +214,7 @@ class Particle:
     """
     This class represents a particle.
     """
+
     def __init__(self, data, p, h):
         """
         Initialize the 'Particle' class, given 'data' of type
@@ -285,10 +292,12 @@ class Particle:
         w[0], w[1], w[2], w[3] = w[2], w[3], w[0], w[1]
         return w
 
+
 class Integrator:
     """
     This class integrates a two variable function.
     """
+
     def __init__(self, f, xmin, xmax, ymin, ymax):
         """
         Initialize the integrator, given a function 'f', a minimum x
@@ -316,6 +325,7 @@ class Integrator:
             t += self.f(x, y)
         return t / float(n) * self.xdif * self.ydif
 
+
 def circle(x, y):
     """
     Return 1 if 'x' and 'y' in a unit circle, 0 otherwise.
@@ -324,6 +334,7 @@ def circle(x, y):
 
     f = sqrt(1 - x**2)
     return 0 if abs(y) > f else 1
+
 
 class Annihilate:
     """
