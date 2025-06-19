@@ -257,7 +257,6 @@ class Particle:
             self.a,
         )
 
-        
     def w(self):
         """
         Return the Dirac spinor for this particle.
