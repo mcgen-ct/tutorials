@@ -9,8 +9,7 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 * [random number generation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/rng.ipynb) (MC 1, SM)
 * integration (MC 1, SM)
 * parton showers (MC 2, TM from SH)
-* matching and merging (MC 2, BA from SH)
-* hadronization (MC 3, TM)
+* [hadronization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hadronization.ipynb) (MC 3, TM)
 * phase-space decays (MC 3, PI)
 * hard process generation?
   * PDF sampling
