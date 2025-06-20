@@ -72,24 +72,21 @@ class ParticleData:
         """
         Return the anti-particle data.
         """
-        if self.anti:
-            return self.anti
-        else:
-            if self.name[-1] == "+":
-                name = self.name[:-1] + "-"
-            elif self.name[-1] == "-":
-                name = self.name[:-1] + "+"
-            else:
-                name = self.name + "bar"
-            return ParticleData(
-                -self.pid,
-                name,
-                self.mass,
-                self.tau,
-                self.spin,
-                -self.charge,
-                self.colour,
-            )
+        return self.anti
+
+    def quarks(self):
+        """
+        Return a list of the consituent quark IDs.
+        """
+        pid = abs(self.pid)
+        qids = []
+        if pid <= 100 or 1000000 <= pid <= 9000000 or pid >= 9900000:
+            return qids
+        for dec in (10, 100, 1000):
+            qid = (pid // dec) % 10
+            if qid != 0:
+                qids += [qid]
+        return qids
 
 
 class ParticleDatabase(dict):
