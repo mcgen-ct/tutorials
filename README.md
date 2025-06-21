@@ -1,4 +1,4 @@
-# tutorials
+# Tutorials
 
 These are the tutorials for the Monte Carlo general education network (MCgen).
 
