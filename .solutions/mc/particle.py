@@ -74,6 +74,22 @@ class ParticleData:
         """
         return self.anti
 
+    def __lt__(self, pd):
+        """
+        Returns `True` if this object is "smaller" than `pd`.
+        Here, smaller is defined by absolute `pid`, then signed, and if
+        identical objects, then returns `False`. This operator is needed
+        for sorting.
+
+        pd: `ParticleData` object for comparison.
+        """
+        if abs(self.pid) != abs(pd.pid):
+            return abs(self.pid) < abs(pd.pid)
+        elif self.pid != pd.pid:
+            return self.pid < pd.pid
+        else:
+            return False
+
     def quarks(self):
         """
         Return a list of the consituent quark IDs.
@@ -95,14 +111,29 @@ class ParticleDatabase(dict):
     all particle in the 'ParticleData.xml' file from Pythia 8.
     """
 
-    def __init__(self, xmlfile="ParticleData.xml"):
+    def __init__(self, xmlfile=None):
         """
         Read in the particle data from the XML file 'xmlfile'.
         """
         # Instantiate the base class.
         dict.__init__(self)
         # Open the XML file.
-        xml = open(xmlfile)
+        xml = None
+        if xml != None:
+            try:
+                xml = open(xmlfile)
+            except:
+                pass
+        else:
+            for xmlfile in ["ParticleData.xml", "data/ParticleData.xml"]:
+                try:
+                    xml = open(xmlfile)
+                    break
+                except:
+                    pass
+        if xml == None:
+            print("Error: could not find particle data")
+            return
         # Create the particle string.
         pstr = ""
         # Create the list of particle strings.
