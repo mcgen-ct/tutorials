@@ -4,57 +4,24 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 
 ## Monte Carlo
 
-### Build-Your-Own
-* [common utilities](utils) (MC 1, PI)
-* [random number generation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/rng.ipynb) (MC 1, SM)
-* integration (MC 1, SM)
-* parton showers (MC 2, TM from SH)
-* [hadronization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hadronization.ipynb) (MC 3, TM)
-* phase-space decays (MC 3, PI)
-* hard process generation?
-  * PDF sampling
-  * helicity sampling
-* detector effects (MC 4, PI)
-  * multiple scattering
-  * conversions
-  * bremsstrahlung?
-  * calorimeter showers?
-* detector resconstruction (MC 4, MW or PI)
-  * track finding
-  * track fitting
-  * vertex finding
-* tuning (MC 4)
-* ...
-
-### Common Tools
 * [Pythia](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/worksheet.ipynb)
-* [Pythia tuning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/tuning.ipynb)
+* [tuning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/tuning.ipynb)
+* [random number generation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/rng.ipynb)
+* [integration and sampling]()
+* [matrix elements]()
+* [parton showers]()
+* [hadronization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hadronization.ipynb)
 
 ## Machine Learning
 
-### Build-Your-Own
-* [linear and logistic regression](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/regression.ipynb) (ML 1, MS)
-* [unsupervised learning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/unsupervised.ipynb) (ML 1, MS)
-* [normalizing flows](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/flows.ipynb) (ML ?, MS)
-* [classification](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/classify.ipynb) (ML ?, MS)
-* boosted decision trees (ML 2)
-* neural networks (ML 2, RG)
-* auto-differentiation (ML 3, TM)
+* [linear and logistic regression](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/regression.ipynb)
+* [classification](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/classify.ipynb)
+* [auto-differentiation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/autodiff.ipynb)
+* [neural networks](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/neural_networks.ipynb)
+* [neural networks with standard tools](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/neural_networks_jax_pytorch_tensorflow.ipynb)
 
-### Common Tools
-* PyTorch
-* JAX
+## Additional Machine Learning
 
-# Slides and Videos
-
-* MC 1 (1 hour)
-* MC 2 (1 hour)
-* MC 3 (1 hour)
-* MC 4 (1 hour)
-
-* MC 1 (1 hour)
-  * general introduction
-* MC 2 (1 hour)
-  * some common tasks
-* MC 3 (1 hour)
-  * realistic example in MC generator context
+* [unsupervised learning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/unsupervised.ipynb)
+* [normalizing flows](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/flows.ipynb)
+* [boosted decision trees](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/decision_trees_random_forests_boosted_decision_trees.ipynb)
