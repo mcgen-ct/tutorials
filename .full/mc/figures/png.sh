@@ -4,5 +4,5 @@
 for PDF in *.pdf; do
     PNG=${PDF%.*}.png
     rm -f $PNG
-    convert $PDF -resize 450x $PNG
+    convert -density 300 $PDF -resize 400x $PNG
 done
