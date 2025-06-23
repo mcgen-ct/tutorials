@@ -18,17 +18,7 @@
 
 
 import sys
-
-cfg = open("../../software/pythia/pythia8312/examples/Makefile.inc")
-lib = "../../software/pythia/pythia8312/lib"
-for line in cfg:
-    if line.startswith("PREFIX_LIB="):
-        lib = line[11:-1]
-        break
-sys.path.insert(0, lib)
-
-
-import pythia8
+import pythia8mc as pythia8
 import json
 import os
 import numpy as np
