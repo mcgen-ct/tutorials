@@ -7,7 +7,7 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 * [Pythia](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/worksheet.ipynb)
 * [tuning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/tuning.ipynb)
 * [random number generation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/rng.ipynb)
-* [integration and sampling]()
+* [integration and sampling](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/integrate.ipynb)
 * [matrix elements]()
 * [parton showers]()
 * [hadronization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hadronization.ipynb)
