@@ -1,13 +1,13 @@
 # status_meaning.py - Dictionary of Pythia event status codes and descriptions.
 # Copyright (C) 2024 Torbjorn Sjostrand.
 # Authors: Phil Ilten, Ahmed Youssef, Jure Zupan
-# This software is licensed under the GNU GPL v2 or later. See COPYING for 
+# This software is licensed under the GNU GPL v2 or later. See COPYING for
 # details. Please respect the MCnet Guidelines, see GUIDELINES for details.
 
 # Keywords: Pythia8; particle status; event categorization; Monte Carlo sim;
 
-# This module contains a dictionary (`STATUS_MEANINGS`) that maps Pythia event 
-# status codes to human-readable descriptions. It replaces the need for an 
+# This module contains a dictionary (`STATUS_MEANINGS`) that maps Pythia event
+# status codes to human-readable descriptions. It replaces the need for an
 # external JSON file and allows easy access to event status information.
 
 status_meaning = {
@@ -68,8 +68,5 @@ status_meaning = {
     "95": "a forced decay handled by an external program, normally without oscillation",
     "96": "a forced decay handled by an external program, with oscillation",
     "97": "decay products from a resonance produced in rescattering",
-    "99": "particles with momenta shifted by Bose-Einstein effects"
+    "99": "particles with momenta shifted by Bose-Einstein effects",
 }
-
-
-
