@@ -290,18 +290,15 @@ class Visualization:
         """
         # For MPI particles with centered settings, use a predefined direction
         if category == "MPI" and self.settings.get("mpi_centered", False):
-            print("I am MPI")
             direction = np.array([1.0, 0.0, 1.0]) / np.sqrt(2)
             if p.px() < 0:
                 direction *= -1
         else:
             momentum_vector = np.array([p.px(), p.py(), p.pz()])
-            print(f"momentum_vector: {momentum_vector}")
             norm = np.linalg.norm(momentum_vector)
             if norm > 0:
                 direction = momentum_vector / norm
             else:
-                print("using default direction")
                 direction = np.array([0.0, 0.0, 1.0])
 
         # Determine the scale factor from settings if not provided
@@ -327,12 +324,7 @@ class Visualization:
 
                 scale_factor /= furthest_dist
 
-        print(self.settings)
         displacement = direction  # * scale_factor
-        print()
-        print(f"direction: {direction}")
-        print(f"scale_factor: {scale_factor}")
-        print(f"Displacement before energy scaling: {displacement}")
 
         # Apply energy or log-energy scaling with auto-normalization
         rescaling_type = self.settings.get("rescaling_type", "none")
@@ -341,21 +333,17 @@ class Visualization:
             dist_category = "hard_process" if category == "MPI" else category
 
         if scaling_type == "energy":
-            print("using energy scaling")
             displacement *= p.e()
         # norm = self.category_furthest_dist.get("non_beam_remnant", {}).get(dist_category, 1.0)
         # displacement /= norm
 
         elif scaling_type == "log_energy":
-            print("using log energy scaling")
             displacement *= np.log(p.e())
         # norm = self.category_furthest_dist.get("non_beam_remnant", {}).get(dist_category, 1.0)
         # displacement /= norm
 
         elif scaling_type == "unit":
-            print("using unit scaling (default)")
 
-        print(scale_factor)
         # if rescale:
         # displacement = direction * scale_factor
         displacement *= self.settings.get("scale_factor", 1)
@@ -365,10 +353,6 @@ class Visualization:
         # Add base length if specified
         if self.settings.get("base_length", None) is not None:
             displacement += direction * self.settings.get("base_length", None)
-
-        print()
-        print(f"direction: {direction}")
-        print(f"final displacement: {displacement}")
 
         end_position = start_position + displacement
         middle_position = start_position + displacement / 2.0
@@ -456,10 +440,6 @@ class Visualization:
                 daughter = self.pythia.event[d1]
                 # Check if the particle is a carbon copy (same PDG ID)
                 if pid == daughter.id():
-                    print(
-                        f"{'  '*depth}Carbon Copy Detected: Skipping "
-                        f"mother Index {prt_idx}"
-                    )
                     # Continue processing with daughter; effective mother
                     # remains the same.
                     descendants += self._process_daughters(
@@ -478,23 +458,9 @@ class Visualization:
 
         tolerance = 1e-6  # GeV tolerance for numerical precision
         if mother_energy is not None and energy > mother_energy + tolerance:
-            print(
-                f"{'  ' * depth}Warning: Particle {prt_idx} has more "
-                f"energy ({energy:.2e} GeV) than its mother "
-                f"{effective_mother} ({mother_energy:.2e} GeV)"
-            )
 
         # Record the current particle.
         descendants.append((prt_idx, depth))
-        print(
-            f"{'  ' * depth}{depth} Particle Index: {prt_idx}, "
-            f"PDG ID: {pid}, Name: {particle_name}, Status: {status}, "
-            f"Category: {category}"
-        )
-        print(
-            f"{'  ' * depth}  Energy: {energy:.2e} GeV, px: {p.px():.2e}, "
-            f"py: {p.py():.2e}, pz: {p.pz():.2e}"
-        )
 
         # Handle gluons with shared daughters: only most energetic gluon proceeds
         if abs(pid) == 21 and (d1 > 0 or d2 > 0):
@@ -520,9 +486,6 @@ class Visualization:
                     self.daughter_claims[d] = prt_idx
 
             if not can_proceed:
-                print(
-                    f"{'  '*depth}Skipping gluon {prt_idx}, daughter(s) already claimed by higher-energy gluon"
-                )
                 return descendants, self.particle_mother_mapping
 
         # Process daughter particles recursively.
@@ -574,10 +537,6 @@ class Visualization:
 
             # Process hadrons with 80 < id < 90 that have multiple mothers
             if 80 < abs(status) < 90 and len(mother_indices) > 1:
-                print(
-                    f"Processing hadron index {hadron_index} "
-                    f"with status {status}. Mothers: {mother_indices}"
-                )
 
                 # Variables to track the best mother candidate
                 best_mother_index = None
@@ -599,10 +558,6 @@ class Visualization:
                     dR = delta_r(hadron_p, mother_p)
                     cos_theta_value = cos_theta(hadron_p, mother_p)
 
-                    print(
-                        f"  Mother index {mother_index}, delta R: {dR:.4f}, "
-                        f"cos(theta): {cos_theta_value:.4f}"
-                    )
 
                     # Update fallback if this mother has a smaller delta R
                     if dR < fallback_smallest_delta_r:
@@ -624,21 +579,10 @@ class Visualization:
                 if best_mother_index is None and (fallback_mother_index is not None):
                     best_mother_index = fallback_mother_index
                     smallest_delta_r = fallback_smallest_delta_r
-                    print(
-                        f"  No positive cos(theta). Fallback to mother "
-                        f"{best_mother_index} with smallest delta R of "
-                        f"{smallest_delta_r:.4f}"
-                    )
 
                 # Update the mapping to keep only the best mother candidate.
                 if best_mother_index is not None:
-                    print(
-                        f"  Keeping mother {best_mother_index} "
-                        f"with delta R: {smallest_delta_r:.4f}, "
-                        f"cos(theta): {best_cos_theta:.4f}"
-                    )
                     self.particle_mother_mapping[hadron_index] = [best_mother_index]
-                print("-" * 40)
 
         return self.particle_mother_mapping
 
@@ -661,8 +605,6 @@ class Visualization:
         # First, gather all relevant partons from the mother-daughter mapping
         parton_list = []
 
-        print("particle_mother_mapping", self.particle_mother_mapping)
-
         # Combine keys and values from the mapping into one list
         all_particles = list(self.particle_mother_mapping.keys())
         for mother_indices in self.particle_mother_mapping.values():
@@ -680,7 +622,6 @@ class Visualization:
             # Include partons with status 71 or 74 directly
             if status in [71, 74]:
                 parton_list.append(prt_idx)
-                print("Added particle with status 71 or 74:", prt_idx)
             # For partons with status 63 or 23, check daughters
             elif status in [63, 23]:
                 daughter1 = prt.daughter1()
@@ -706,11 +647,6 @@ class Visualization:
             color_index = prt.col()
             anti_color_index = prt.acol()
             status = abs(prt.status())
-
-            print(
-                f"Particle {prt_idx}: Status = {status}, "
-                f"Color = {color_index}, Anti-color = {anti_color_index}"
-            )
 
             partons_to_process.append(prt_idx)  # Track for processing
 
@@ -850,9 +786,6 @@ class Visualization:
             # Initialize scale factor from settings
             scale_factor = self.settings.get("scale_factor", 1)
             if rescale:
-                #    print('I am rescaling')
-                #    sys.exit()
-                print("self.futhest_dist", self.category_furthest_dist)
                 if self.settings.get("rescaling_type") == "total_distance_based":
                     scaling_type = "overall"
                 elif self.settings.get("rescaling_type") == "category_distance_based":
@@ -891,12 +824,6 @@ class Visualization:
                 remnant_key=remnant_key,
             )
 
-            # self.compute_mid_end_pos(
-            #     p, start_position, category=category, scale_factor=scale_factor
-            # )
-            #  print('end_position', end_position)
-            #  print('middle_position', middle_position)
-            #  sys.exit()
             # Store computed positions for the particle
             positions[prt_idx] = {
                 "start": start_position,
@@ -969,15 +896,6 @@ class Visualization:
                 "middle": middle_position,
                 "end": end_position,
             }
-
-        # Optional debug printing when rescaling is enabled
-        if rescale:
-            print("Initial particles processed.")
-            for particle in self.particle_positions:
-                print(
-                    f"Particle index: {particle}, Positions: "
-                    f"{self.particle_positions[particle]}"
-                )
 
         return positions
 
@@ -1470,15 +1388,6 @@ class Visualization:
             initial_particles, rescale=False
         )
 
-        print("Particle Positions (no rescaling):")
-        for idx, pos in self.particle_positions.items():
-            print(f"Particle {idx}:")
-            print(f"  Start : {pos['start']}")
-            print(f"  Middle: {pos['middle']}")
-            print(f"  End   : {pos['end']}")
-
-        # sys.exit()
-
         # Find furthest distances for different categories.
         self.category_furthest_dist = self.find_furthest_dist_from_positions()
 
@@ -1490,15 +1399,6 @@ class Visualization:
             y_shift=y_shift,
             z_shift=z_shift,
         )
-
-        print("Particle Positions (rescaling):")
-        for idx, pos in self.rescaled_positions.items():
-            print(f"Particle {idx}:")
-            print(f"  Start : {pos['start']}")
-            print(f"  Middle: {pos['middle']}")
-            print(f"  End   : {pos['end']}")
-        # print('I am here')
-        # sys.exit()
 
         # Get color connection info if enabled.
         if self.settings["color_connection"]:
@@ -1512,11 +1412,9 @@ class Visualization:
         output_dir = "files"
         os.makedirs(output_dir, exist_ok=True)
 
-        # Construct full path to save the file in 'files/' folder
-        file_path = os.path.join(output_dir, self.file_name)
-
         # Save the JSON data
-        with open(file_path, "w") as f:
+        os.makedirs(os.path.dirname(self.file_name), exist_ok=True)
+        with open(self.file_name, "w") as f:
             json.dump(self.json_data, f, indent=4)
 
         # # Save the JSON data.
@@ -1542,228 +1440,3 @@ def str2bool(v):
         return False
     else:
         raise argparse.ArgumentTypeError("Boolean value expected.")
-
-
-def parse_arguments():
-    """
-    Parse command-line arguments for configuring Pythia and visualization
-    settings.
-    """
-    parser = argparse.ArgumentParser(description="Run Pythia visualization tool.")
-
-    # Both arguments are now optional but at least one must be provided.
-    parser.add_argument(
-        "--read_strings",
-        nargs="+",
-        type=str,
-        help="List of Pythia readString commands to configure Pythia.",
-    )
-    parser.add_argument(
-        "--command_file",
-        nargs="+",
-        type=str,
-        help="Paths to one or more Pythia .cmnd files containing commands.",
-    )
-
-    # Visualization settings, using str2bool for booleans.
-    parser.add_argument(
-        "--beam_remnant",
-        type=str2bool,
-        default=True,
-        help="Add beam remnant (default: True).",
-    )
-    parser.add_argument(
-        "--remove_copy",
-        type=str2bool,
-        default=True,
-        help="Remove carbon copies (default: True).",
-    )
-    parser.add_argument(
-        "--color_connection",
-        type=str2bool,
-        default=True,
-        help="Enable color connection (default: True).",
-    )
-    parser.add_argument(
-        "--mpi",
-        type=str2bool,
-        default=True,
-        help="Include multi-parton interactions (default: True).",
-    )
-    parser.add_argument(
-        "--scale_factor", type=float, default=1, help="Scale factor for visualization."
-    )
-    parser.add_argument(
-        "--boost_mode",
-        type=str,
-        default="cm_incoming",
-        choices=["None", "cm_incoming", "cm_outgoing"],
-        help="Boost mode: None, cm_incoming, or cm_outgoing.",
-    )
-    parser.add_argument(
-        "--scaling_type",
-        type=str,
-        default="unit",
-        choices=["unit", "energy", "log_energy"],
-        help="Scaling type: unit, energy, or log_energy.",
-    )
-    parser.add_argument(
-        "--rescaling_type",
-        type=str,
-        default="category_distance_based",
-        choices=["none", "total_distance_based", "category_distance_based"],
-        help="Rescaling type.",
-    )
-    parser.add_argument(
-        "--base_length", type=float, default=40, help="Base length added to each track."
-    )
-    # MPI location settings: x, y, and z coordinates.
-    parser.add_argument(
-        "--mpi_x",
-        type=float,
-        default=19.2,
-        help="MPI location x coordinate (default: 19.2).",
-    )
-    parser.add_argument(
-        "--mpi_y",
-        type=float,
-        default=8.9,
-        help="MPI location y coordinate (default: 8.9).",
-    )
-    parser.add_argument(
-        "--mpi_z",
-        type=float,
-        default=0.0,
-        help="MPI location z coordinate (default: 0.0).",
-    )
-
-    # Generate a timestamped default file name.
-    timestamp = datetime.datetime.now().strftime("date_%Y_%m_%d_time_%H:%M:%S")
-    default_file_name = f"visualization_{timestamp}.json"
-
-    parser.add_argument(
-        "--file_name",
-        type=str,
-        default=default_file_name,
-        help=f"Output file name (default: {default_file_name}).",
-    )
-
-    args = parser.parse_args()
-
-    # Ensure that at least one source of commands is provided.
-    if not (args.command_file or args.read_strings):
-        parser.error(
-            "At least one of --command_file or" " --read_strings must be provided."
-        )
-
-    return args
-
-
-def load_commands_from_file(file_path):
-    """
-    Load Pythia commands from a .cmnd file.
-
-    The file should contain one command per line. Blank lines and lines
-    not beginning with a letter or digit are ignored. Inline comments
-    (anything after an exclamation point) are removed.
-    """
-    commands = []
-    with open(file_path, "r") as f:
-        for line in f:
-            line = line.strip()
-            # Process only lines that start with a letter or digit.
-            if line and line[0].isalnum():
-                # Remove inline comments by splitting at the first '!'
-                line = line.split("!", 1)[0].strip()
-                if line:  # Ensure the line is not empty
-                    # after removing the comment.
-                    commands.append(line)
-    return commands
-
-
-def configure_pythia(pythia, commands):
-    """
-    Configure Pythia using a list of commands.
-    """
-    for command in commands:
-        print(f"Executing: {command}")
-        pythia.readString(command)
-
-
-def open_website():
-    url = "https://hepsoftwarefoundation.org/phoenix/playground"
-    try:
-        if not webbrowser.open(url, new=2):
-            print("Failed to open URL. Please check your browser settings.")
-    except Exception as e:
-        print(f"Error opening website: {e}")
-
-
-# Main execution code
-if __name__ == "__main__":
-    args = parse_arguments()
-
-    # Combine commands from files and read_strings.
-    commands = []
-
-    if args.command_file:
-        for file_path in args.command_file:
-            if not os.path.exists(file_path):
-                sys.exit(f"Error: Command file {file_path} does not exist.")
-            file_commands = load_commands_from_file(file_path)
-            commands.extend(file_commands)
-
-    if args.read_strings:
-        commands.extend(args.read_strings)
-
-    # Debug: print the final list of commands.
-    print("Final list of Pythia commands:")
-    for cmd in commands:
-        print(f"  {cmd}")
-
-    if args.scaling_type == "log_energy":
-        args.scale_factor /= 5
-    elif args.scaling_type == "energy":
-        args.scale_factor /= 50
-
-    # Prepare settings for visualization.
-    settings = {
-        "remove_copy": args.remove_copy,  # Removes carbon copies
-        "beam_remnant": args.beam_remnant,  # Includes beam remnant
-        "scale_factor": args.scale_factor,  # Scale factor for visualization
-        "boost_mode": args.boost_mode,  # Boost mode: None, "cm_incoming",
-        # or "cm_outgoing"
-        "scaling_type": args.scaling_type,  # Scaling type: "unit", "energy",
-        # or "log_energy"
-        "rescaling_type": args.rescaling_type,  # Rescaling: "none",
-        # "total_distance_based",
-        #  "category_distance_based"
-        "base_length": args.base_length,  # Base length added to each track
-        "color_connection": args.color_connection,  # Include color connection
-        "mpi": args.mpi,  # Include multi-parton interaction
-        "mpi_location": [args.mpi_x, args.mpi_y, args.mpi_z],  # MPI starting
-        # location
-    }
-
-    print("Visualization settings:")
-    print(settings)
-
-    # Create and configure a Pythia instance.
-    pythia = pythia8.Pythia()
-    configure_pythia(pythia, commands)
-    pythia.init()
-
-    # Process an event (you can adjust the number of events as needed).
-    pythia.next()
-    #    pythia.next()
-    pythia.event.list()
-
-    #   sys.exit()
-
-    file_name = args.file_name
-
-    # Initialize the Visualization class
-    visualization = Visualization(pythia, settings, file_name)
-    result = visualization.get_json()
-
-    open_website()
