@@ -53,7 +53,11 @@ class Visualization:
         self.rescaled_positions = {}
         self.category_furthest_dist = {}
         self.color_neutral_objects = []
-        self.highlight_category = "color_connection"
+        self.highlight_category = None
+
+        # Set the highlight category.
+        if "highlight_category" in settings:
+            self.highlight_category = settings["highlight_category"]
 
         self.track_color_connection_info = []
 
@@ -1020,7 +1024,6 @@ class Visualization:
         # Loop over each color-neutral object
         for k, color_neutral_object in enumerate(self.color_neutral_objects):
             # color = colors[k]  # Assign a unique color for this group
-            # if self.highlight_category is not None and all(cat != self.highlight_category for cat in group_categories):
             if (
                 self.highlight_category is not None
                 and "color_connection" != self.highlight_category
