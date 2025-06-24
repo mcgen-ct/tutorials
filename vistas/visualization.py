@@ -1339,7 +1339,9 @@ class Visualization:
         """
         # Save the JSON data.
         self.get_json()
-        os.makedirs(os.path.dirname(file_name), exist_ok=True)
+        dir_name = os.path.dirname(file_name)
+        if dir_name != "":
+            os.makedirs(dir_name, exist_ok=True)
         with open(file_name, "w") as f:
             json.dump(self.json_data, f, indent=1)
 
