@@ -11,6 +11,7 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 * [matrix elements]()
 * [parton showers]()
 * [hadronization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hadronization.ipynb)
+* [visualization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/vistas/vistas.ipynb)
 
 ## Machine Learning
 
