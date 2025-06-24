@@ -1,0 +1,16 @@
+! visualization.cmnd.
+! This file contains commands to be read in for a Pythia8 run.
+! Lines not beginning with a letter or digit are comments.
+! Names are case-insensitive -  but spellings-sensitive!
+
+
+! 1) Settings related to the incoming beams
+Beams:idA = 2212                   ! Proton
+Beams:idB = 2212                   ! Proton
+Beams:eCM = 13000                  ! Center of mass energy
+HardQCD:all = on                   ! Enable hard QCD processes
+
+
+
+
+
