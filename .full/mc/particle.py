@@ -243,14 +243,14 @@ class Particle:
     This class represents a particle.
     """
 
-    def __init__(self, data, p, h):
+    def __init__(self, data, p, h=0.0, c=(0, 0)):
         """
         Initialize the `Particle` class, given `data` of type
         `ParticleData` for that particle type, the momentum
-        four-vector `p`, and the helicity `h`.
+        four-vector `p`, the helicity `h`, and the color `c`.
 
         Additional members are also available.
-        c: color for this particle.
+        c: color and anti-color for this particle.
         a: anti-color for this particle.
         t: production vertex for this particle.
         parents:  list of parents for this particle.
@@ -263,8 +263,7 @@ class Particle:
         if self.p[0] < 0:
             self.p[0] = sqrt(sum([pj**2 for pj in p[1:]]) + data.mass**2)
         self.h = float(h)
-        self.c = 0
-        self.a = 0
+        self.c = [ci for ci in c]
         self.t = FourVector(0, 0, 0, 0)
         self.parents = []
         self.children = []
@@ -273,7 +272,7 @@ class Particle:
         """
         Return a string to print this particle.
         """
-        return ("%6s: %r\n" * 3 + "h, c, a: %.2e, %i, %i\n") % (
+        return ("%6s: %r\n" * 3 + "h, c, a: %.2e, (%i, %i)\n") % (
             "data",
             self.data,
             "p",
@@ -281,8 +280,8 @@ class Particle:
             "t",
             self.t,
             self.h,
-            self.c,
-            self.a,
+            self.c[0],
+            self.c[1],
         )
 
     def w(self):

@@ -7,10 +7,11 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 * [Pythia](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/worksheet.ipynb)
 * [tuning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/tuning.ipynb)
 * [random number generation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/rng.ipynb)
-* [integration and sampling]()
-* [matrix elements]()
-* [parton showers]()
+* [integration and sampling](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/integrate.ipynb)
+* [hard process](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hard_process.ipynb)
+* [parton showers](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/parton_shower.ipynb)
 * [hadronization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hadronization.ipynb)
+* [visualization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/vistas/vistas.ipynb)
 
 ## Machine Learning
 
@@ -19,9 +20,6 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 * [auto-differentiation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/autodiff.ipynb)
 * [neural networks](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/neural_networks.ipynb)
 * [neural networks with standard tools](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/neural_networks_jax_pytorch_tensorflow.ipynb)
-
-## Additional Machine Learning
-
 * [unsupervised learning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/unsupervised.ipynb)
 * [normalizing flows](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/flows.ipynb)
 * [boosted decision trees](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/decision_trees_random_forests_boosted_decision_trees.ipynb)
