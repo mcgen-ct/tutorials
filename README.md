@@ -9,7 +9,7 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 * [random number generation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/rng.ipynb)
 * [integration and sampling](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/integrate.ipynb)
 * [hard process](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hard_process.ipynb)
-* [parton showers]()
+* [parton showers](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/parton_shower.ipynb)
 * [hadronization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hadronization.ipynb)
 * [visualization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/vistas/vistas.ipynb)
 

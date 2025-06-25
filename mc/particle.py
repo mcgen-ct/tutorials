@@ -272,7 +272,7 @@ class Particle:
         """
         Return a string to print this particle.
         """
-        return ("%6s: %r\n" * 3 + "h, c, a: %.2e, %i, (%i, %i)\n") % (
+        return ("%6s: %r\n" * 3 + "h, c, a: %.2e, (%i, %i)\n") % (
             "data",
             self.data,
             "p",
