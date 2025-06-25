@@ -119,14 +119,19 @@ class eeTojj:
         # Differential cross section (pb) for this phase space point
         dxs = 5.0 * loME * 3.89379656e8 / (8.0 * np.pi) / (2.0 * np.power(self.ecms, 2))
 
-        # Return list of Particle objects (incoming and outgoing), cross section, and ME^2
+        # Return list of Particle objects (incoming and outgoing),
+        # cross section, and ME^2.
         return (
             [
-                Particle(self.pdb["e+"], -pa),  # e+ (incoming)
-                Particle(self.pdb["e-"], -pb),  # e- (incoming)
-                Particle(self.pdb[flav], p1, [1, 0]),  # outgoing fermion (color [1,0])
-                Particle(self.pdb[-flav], p2, [0, 1]),
-            ],  # outgoing anti-fermion (color [0,1])
+                # e+ (incoming).
+                Particle(self.pdb["e+"], -pa),
+                # e- (incoming).
+                Particle(self.pdb["e-"], -pb),
+                # Outgoing fermion (color [1,0]).
+                Particle(self.pdb[flav], p1, c=[1, 0]),
+                # Outgoing anti-fermion (color [0,1]).
+                Particle(self.pdb[-flav], p2, c=[0, 1]),
+            ],
             dxs,
             loME,
         )

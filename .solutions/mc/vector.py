@@ -444,7 +444,7 @@ class FourVector(Vector):
     def cross(self, v):
         """
         Return the cross product of this four-vector with another
-        four-vector 'v'. This is only defined for the spatial
+        four-vector `v`. This is only defined for the spatial
         components.
         """
         return FourVector(
@@ -457,7 +457,7 @@ class FourVector(Vector):
     def boost(self, p=None, mass=None):
         """
         Return the boosted four-vector given a momentum four-vector
-        'p' and an optional 'mass'. If 'p' is not given, the four-vector
+        `p` and an optional `mass`. If `p` is not given, the four-vector
         is boosted to its own rest frame.
         """
         from math import sqrt
@@ -473,7 +473,7 @@ class FourVector(Vector):
     def boost_back(self, p=None, mass=None):
         """
         Return the Lorentz boost-back of this four-vector given a
-        momentum four-vector 'p' and an optional 'mass'. If 'p' is not
+        momentum four-vector `p` and an optional `mass`. If `p` is not
         given, the four-vector is boosted back to its own rest frame.
         """
         from math import sqrt
