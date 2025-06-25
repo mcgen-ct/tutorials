@@ -250,6 +250,7 @@ class Particle:
         four-vector `p`, the helicity `h`, and the color `c`.
 
         Additional members are also available.
+        c: color for this particle.
         a: anti-color for this particle.
         t: production vertex for this particle.
         parents:  list of parents for this particle.

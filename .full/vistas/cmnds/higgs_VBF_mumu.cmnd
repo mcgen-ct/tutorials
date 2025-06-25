@@ -1,0 +1,18 @@
+! Proton-proton collisions at 13 TeV
+Beams:idA = 2212
+Beams:idB = 2212
+Beams:eCM = 13000
+
+! Higgs production via vector boson fusion (VBF)
+! WW-fusion: scattering f1 f2 → H f3 f4 via W+W-
+HiggsSM:ff2Hff(t:WW) = on
+
+! ZZ-fusion: scattering f → H f via Z0Z0 exchange
+HiggsSM:ff2Hff(t:ZZ) = on
+
+! Disable all Higgs decay channels
+25:onMode = off
+
+! Enable only H → mu+ mu- decay
+25:onIfMatch = 13 -13
+

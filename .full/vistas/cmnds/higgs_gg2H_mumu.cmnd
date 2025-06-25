@@ -1,0 +1,15 @@
+! Proton-proton collisions at 13 TeV
+Beams:idA = 2212
+Beams:idB = 2212
+Beams:eCM = 13000
+
+! Higgs production via gluon fusion (gg -> H)
+HiggsSM:gg2H = on
+
+! Disable all Higgs decay channels
+25:onMode = off
+
+! Enable only H → mu+ mu- decay
+25:onIfMatch = 13 -13
+
+
