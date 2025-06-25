@@ -3,7 +3,7 @@
 
 class Vector:
     """
-    The 'Vector' class represents a vector of length 4.
+    The `Vector` class represents a vector of length 4.
     """
 
     def __str__(self):
@@ -26,15 +26,15 @@ class Vector:
 
     def __getitem__(self, i):
         """
-        Return the 'i' component of the vector. Note, this can be a
+        Return the `i` component of the vector. Note, this can be a
         slice.
         """
         return self.v[i]
 
     def __setitem__(self, i, s):
         """
-        Set the 'i' component of the vector with the scalar
-        's'. Alternatively, 'i' can be a slice and 's' a sub-vector.
+        Set the `i` component of the vector with the scalar
+        `s`. Alternatively, `i` can be a slice and `s` a sub-vector.
         """
         self.v[i] = s
 
@@ -46,21 +46,21 @@ class Vector:
 
     def __pos__(self):
         """
-        Return a copy of this vector with the '+' operator applied to
+        Return a copy of this vector with the `+` operator applied to
         each element.
         """
         return self.__class__(+self[0], +self[1], +self[2], +self[3])
 
     def __neg__(self):
         """
-        Return a copy of this vector with the '-' operator applied to
+        Return a copy of this vector with the `-` operator applied to
         each element.
         """
         return self.__class__(-self[0], -self[1], -self[2], -self[3])
 
     def __iadd__(self, v):
         """
-        Augmented assignment '+=' for adding a vector 'v' to this vector.
+        Augmented assignment `+=` for adding a vector `v` to this vector.
         """
         for i in range(0, 4):
             self[i] += v[i]
@@ -68,7 +68,7 @@ class Vector:
 
     def __isub__(self, v):
         """
-        Augmented assignment '-=' for subtracting a vector 'v' from
+        Augmented assignment `-=` for subtracting a vector `v` from
         this vector.
         """
         for i in range(0, 4):
@@ -77,7 +77,7 @@ class Vector:
 
     def __add__(self, v):
         """
-        Return the addition of this vector with the vector 'v'.
+        Return the addition of this vector with the vector `v`.
         """
         u = +self
         u += v
@@ -85,7 +85,7 @@ class Vector:
 
     def __sub__(self, v):
         """
-        Return the subtraction of this vector with the vector 'v'.
+        Return the subtraction of this vector with the vector `v`.
         """
         u = +self
         u -= v
@@ -105,8 +105,8 @@ class Vector:
 
     def __imul__(self, x):
         """
-        Augmented assignment '*=' for multiplying this vector with a
-        vector, matrix, or scalar 'x'.
+        Augmented assignment `*=` for multiplying this vector with a
+        vector, matrix, or scalar `x`.
         """
         # The vector case.
         try:
@@ -128,7 +128,7 @@ class Vector:
     def __mul__(self, x):
         """
         Return the multiplication of this vector with a vector, matrix, or
-        scalar 'x'.
+        scalar `x`.
         """
         u = +self
         u *= x
@@ -136,7 +136,7 @@ class Vector:
 
     def __rmul__(self, x):
         """
-        Return the multiplication of a vector, matrix, or scalar 'x'
+        Return the multiplication of a vector, matrix, or scalar `x`
         with this vector. The operation x*v where x is a vector or
         matrix is not used.
         """
@@ -144,8 +144,8 @@ class Vector:
 
     def __itruediv__(self, s):
         """
-        Augmented assignment '/=' for dividing this vector with a
-        scalar 's'.
+        Augmented assignment `/=` for dividing this vector with a
+        scalar `s`.
         """
         for i in range(0, 4):
             self[i] /= s
@@ -153,8 +153,8 @@ class Vector:
 
     def __truediv__(self, s):
         """
-        Return the division of this vector by a scalar 's'. The
-        reflected operator, 's/v', cannot be implemented since this is
+        Return the division of this vector by a scalar `s`. The
+        reflected operator, `s/v`, cannot be implemented since this is
         not a defined mathematical operation.
         """
         u = +self
@@ -163,8 +163,8 @@ class Vector:
 
     def __ipow__(self, i):
         """
-        Augmented assignment '**=' for raising this vector to the
-        integer power 'i'. For even 'i' this is a scalar and odd 'i' a
+        Augmented assignment `**=` for raising this vector to the
+        integer power `i`. For even `i` this is a scalar and odd `i` a
         vector.
         """
         if i < 0:
@@ -182,8 +182,8 @@ class Vector:
 
     def __pow__(self, i):
         """
-        Return this vector raised to the integer power 'i'. For even
-        'i' this is a scalar and odd 'i' a vector.
+        Return this vector raised to the integer power `i`. For even
+        `i` this is a scalar and odd `i` a vector.
         """
         u = +self
         u **= i
@@ -203,7 +203,7 @@ class Vector:
 
 class Matrix:
     """
-    The 'Matrix' class represents a matrix of size 4x4.
+    The `Matrix` class represents a matrix of size 4x4.
     """
 
     def __str__(self):
@@ -222,35 +222,35 @@ class Matrix:
 
     def __init__(self, m0, m1, m2, m3):
         """
-        Initialise the matrix with the row vectors 'm0', 'm1', 'm2',
-        and 'm3'.
+        Initialise the matrix with the row vectors `m0`, `m1`, `m2`,
+        and `m3`.
         """
         self.m = [[mij for mij in mi] for mi in [m0, m1, m2, m3]]
 
     def __getitem__(self, k):
         """
-        Return the 'ij' component of the matrix.
+        Return the `ij` component of the matrix.
         """
         i, j = k
         return self.m[i][j]
 
     def __setitem__(self, k, s):
         """
-        Set the 'ij' component of the matrix with the scalar 's'.
+        Set the `ij` component of the matrix with the scalar `s`.
         """
         i, j = k
         self.m[i][j] = s
 
     def __pos__(self):
         """
-        Return a copy of this matrix with the '+' operator applied to
+        Return a copy of this matrix with the `+` operator applied to
         each element.
         """
         return self.__class__(m0=self.m[0], m1=self.m[1], m2=self.m[2], m3=self.m[3])
 
     def __neg__(self):
         """
-        Return a copy of this matrix with the '-' operator applied to
+        Return a copy of this matrix with the `-` operator applied to
         each element.
         """
         m = +self
@@ -261,7 +261,7 @@ class Matrix:
 
     def __iadd__(self, m):
         """
-        Augmented assignment '+=' for adding a matrix 'm' to this matrix.
+        Augmented assignment `+=` for adding a matrix `m` to this matrix.
         """
         for i in range(0, 4):
             for j in range(0, 4):
@@ -270,7 +270,7 @@ class Matrix:
 
     def __isub__(self, m):
         """
-        Augmented assignment '-=' for subtracting a matrix 'm' from
+        Augmented assignment `-=` for subtracting a matrix `m` from
         this matrix.
         """
         for i in range(0, 4):
@@ -280,7 +280,7 @@ class Matrix:
 
     def __add__(self, m):
         """
-        Return the addition of this matrix with the matrix 'm'.
+        Return the addition of this matrix with the matrix `m`.
         """
         l = +self
         l += m
@@ -288,7 +288,7 @@ class Matrix:
 
     def __sub__(self, m):
         """
-        Return the subtraction of this matrix with the matrix 'm'.
+        Return the subtraction of this matrix with the matrix `m`.
         """
         l = +self
         l -= m
@@ -309,8 +309,8 @@ class Matrix:
 
     def __imul__(self, x):
         """
-        Augmented assignment '*=' for multiplying this matrix with a
-        vector, matrix, or scalar 'x'.
+        Augmented assignment `*=` for multiplying this matrix with a
+        vector, matrix, or scalar `x`.
         """
         # The vector case.
         try:
@@ -345,7 +345,7 @@ class Matrix:
 
     def __rmul__(self, x):
         """
-        Return the multiplication of a vector, matrix, or scalar 'x'
+        Return the multiplication of a vector, matrix, or scalar `x`
         with this matrix. The operation x*m where x is a vector or
         matrix is not used.
         """
@@ -353,8 +353,8 @@ class Matrix:
 
     def __itruediv__(self, s):
         """
-        Augmented assignment '/=' for dividing this matrix with a
-        scalar 's'.
+        Augmented assignment `/=` for dividing this matrix with a
+        scalar `s`.
         """
         for i in range(0, 4):
             for j in range(0, 4):
@@ -363,8 +363,8 @@ class Matrix:
 
     def __truediv__(self, s):
         """
-        Return the division of this matrix by a scalar 's'. The reflected
-        operator, 's/m', requires the inverse of the matrix and is not
+        Return the division of this matrix by a scalar `s`. The reflected
+        operator, `s/m`, requires the inverse of the matrix and is not
         implemented.
         """
         l = +self
@@ -391,8 +391,8 @@ class Matrix:
 
     def __ipow__(self, i):
         """
-        Augmented assignment '**=' for raising this matrix to the
-        integer power 'i'.
+        Augmented assignment `**=` for raising this matrix to the
+        integer power `i`.
         """
         if i < 0:
             raise ValueError("power must be positive")
@@ -410,8 +410,8 @@ class Matrix:
 
     def __pow__(self, i):
         """
-        Return this vector raised to the integer power 'i'. For even
-        'i' this is a scalar and odd 'i' a vector.
+        Return this vector raised to the integer power `i`. For even
+        `i` this is a scalar and odd `i` a vector.
         """
         u = +self
         u **= i
@@ -423,7 +423,7 @@ class Matrix:
 
 class FourVector(Vector):
     """
-    The 'FourVector' class represents a physics four-vector.
+    The `FourVector` class represents a physics four-vector.
     """
 
     def __init__(self, *args):
@@ -440,20 +440,66 @@ class FourVector(Vector):
         for i in range(1, 4):
             v[i] = -v[i]
         return v
+    
+    def cross(self, v):
+        """
+        Return the cross product of this four-vector with another
+        four-vector 'v'. This is only defined for the spatial
+        components.
+        """
+        return FourVector(
+            0.0,
+            self[2] * v[3] - self[3] * v[2],
+            self[3] * v[1] - self[1] * v[3],
+            self[1] * v[2] - self[2] * v[1],
+        )
+    
+    def boost(self, p=None, mass=None):
+        """
+        Return the boosted four-vector given a momentum four-vector
+        'p' and an optional 'mass'. If 'p' is not given, the four-vector 
+        is boosted to its own rest frame.
+        """
+        from math import sqrt
+
+        # Compute the mass
+        rsq = sqrt(self[0]**2 - self[1]**2 - self[2]**2 - self[3]**2)
+        v0 = (self[0] * p[0] - self[1] * p[1] - self[2] * p[2] - self[3] * p[3]) / rsq;
+        c1 = (p[0] + v0) / (rsq + self[0])
+        return FourVector(v0,
+                          p[1] - c1 * self[1],
+                          p[2] - c1 * self[2],
+                          p[3] - c1 * self[3])
+    
+    def boost_back(self, p=None, mass=None):
+        """
+        Return the Lorentz boost-back of this four-vector given a
+        momentum four-vector 'p' and an optional 'mass'. If 'p' is not
+        given, the four-vector is boosted back to its own rest frame.
+        """
+        from math import sqrt
+
+        rsq = sqrt(self[0]**2 - self[1]**2 - self[2]**2 - self[3]**2)
+        v0 = (self[0] * p[0] + self[1] * p[1] + self[2] * p[2] + self[3] * p[3]) / rsq;
+        c1 = (p[0] + v0) / (rsq + self[0])
+        return FourVector(v0,
+                          p[1] + c1 * self[1],
+                          p[2] + c1 * self[2],
+                          p[3] + c1 * self[3])
 
 
 class BoostMatrix(Matrix):
     """
-    The 'BoostMatrix' class represents a Lorentz boost matrix.
+    The `BoostMatrix` class represents a Lorentz boost matrix.
     """
 
     def __init__(self, p=None, mass=None, m0=None, m1=None, m2=None, m3=None):
         """
-        Initialise the boost matrix given a momentum four-vector, 'p'. An
-        additional 'mass' can be passed which can be used to stabilise
-        large boosts. Finally, the 'mi' vectors can be passed so this
+        Initialise the boost matrix given a momentum four-vector, `p`. An
+        additional `mass` can be passed which can be used to stabilise
+        large boosts. Finally, the `mi` vectors can be passed so this
         can be constructed using the same initialisation as the
-        'Matrix' class.
+        `Matrix` class.
         """
         from math import sqrt
 
@@ -490,7 +536,7 @@ if __name__ == "__main__":
 
     def vector(p, idx):
         """
-        Return a vector, given the mass and momentum, 'idx' specifies
+        Return a vector, given the mass and momentum, `idx` specifies
         energy index.
         """
         from math import sqrt

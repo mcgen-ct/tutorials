@@ -3,7 +3,7 @@ from vector import Vector, Matrix, FourVector
 
 class ParticleData:
     """
-    The 'ParticleData' class stores all the necessary information to
+    The `ParticleData` class stores all the necessary information to
     define a particle.
     """
 
@@ -18,10 +18,10 @@ class ParticleData:
         colour=None,
     ):
         """
-        Initialize the class with the following: 'pid' is the particle ID
-        number, 'name' the name, 'mass' the mass in GeV, 'tau' the
-        proper lifetime in mm/c, 'spin' the particle spin, 'charge' is
-        three times the electromagnetic charge, and 'colour' is the
+        Initialize the class with the following: `pid` is the particle ID
+        number, `name` the name, `mass` the mass in GeV, `tau` the
+        proper lifetime in mm/c, `spin` the particle spin, `charge` is
+        three times the electromagnetic charge, and `colour` is the
         colour type.
         """
         self.pid = pid
@@ -107,13 +107,13 @@ class ParticleData:
 
 class ParticleDatabase(dict):
     """
-    The 'ParticleDatabase' initializes and stores the 'ParticleData' for
-    all particle in the 'ParticleData.xml' file from Pythia 8.
+    The `ParticleDatabase` initializes and stores the `ParticleData` for
+    all particle in the `ParticleData.xml` file from Pythia 8.
     """
 
     def __init__(self, xmlfile=None):
         """
-        Read in the particle data from the XML file 'xmlfile'.
+        Read in the particle data from the XML file `xmlfile`.
         """
         # Instantiate the base class.
         dict.__init__(self)
@@ -202,7 +202,7 @@ class ParticleDatabase(dict):
 class DiracMatrices(FourVector):
     """
     This class provides the Dirac matrices. Note that this class
-    inherits from the 'FourVector' class. This is because the Dirac
+    inherits from the `FourVector` class. This is because the Dirac
     matrices also transform under the Minkowski metric, just like
     standard four-vectors.
     """
@@ -243,14 +243,13 @@ class Particle:
     This class represents a particle.
     """
 
-    def __init__(self, data, p, h):
+    def __init__(self, data, p, c = [0,0], h = 0.):
         """
-        Initialize the 'Particle' class, given 'data' of type
-        'ParticleData' for that particle type, the momentum
-        four-vector 'p', and the helicity 'h'.
+        Initialize the `Particle` class, given `data` of type
+        `ParticleData` for that particle type, the momentum
+        four-vector `p`, the helicity `h`, and the color `c`.
 
         Additional members are also available.
-        c: color for this particle.
         a: anti-color for this particle.
         t: production vertex for this particle.
         parents:  list of parents for this particle.
@@ -263,7 +262,7 @@ class Particle:
         if self.p[0] < 0:
             self.p[0] = sqrt(sum([pj**2 for pj in p[1:]]) + data.mass**2)
         self.h = float(h)
-        self.c = 0
+        self.c = c
         self.a = 0
         self.t = FourVector(0, 0, 0, 0)
         self.parents = []
@@ -344,9 +343,9 @@ class Integrator:
 
     def __init__(self, f, xmin, xmax, ymin, ymax):
         """
-        Initialize the integrator, given a function 'f', a minimum x
-        'xmin', a maximum x 'xmax', a minumum y 'ymin', and a
-        maxumimum y 'ymax.
+        Initialize the integrator, given a function `f`, a minimum x
+        `xmin`, a maximum x `xmax`, a minumum y `ymin`, and a
+        maxumimum y `ymax.
         """
         self.f = f
         self.xmin = xmin
@@ -358,7 +357,7 @@ class Integrator:
 
     def mc(self, n=1000):
         """
-        Perform MC integration for given number of sampling points 'n'.
+        Perform MC integration for given number of sampling points `n`.
         """
         import random
 
@@ -372,7 +371,7 @@ class Integrator:
 
 def circle(x, y):
     """
-    Return 1 if 'x' and 'y' in a unit circle, 0 otherwise.
+    Return 1 if `x` and `y` in a unit circle, 0 otherwise.
     """
     from math import sqrt
 
