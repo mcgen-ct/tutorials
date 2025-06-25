@@ -441,6 +441,50 @@ class FourVector(Vector):
             v[i] = -v[i]
         return v
 
+    def cross(self, v):
+        """
+        Return the cross product of this four-vector with another
+        four-vector `v`. This is only defined for the spatial
+        components.
+        """
+        return FourVector(
+            0.0,
+            self[2] * v[3] - self[3] * v[2],
+            self[3] * v[1] - self[1] * v[3],
+            self[1] * v[2] - self[2] * v[1],
+        )
+
+    def boost(self, p=None, mass=None):
+        """
+        Return the boosted four-vector given a momentum four-vector
+        `p` and an optional `mass`. If `p` is not given, the four-vector
+        is boosted to its own rest frame.
+        """
+        from math import sqrt
+
+        # Compute the mass
+        rsq = sqrt(self[0] ** 2 - self[1] ** 2 - self[2] ** 2 - self[3] ** 2)
+        v0 = (self[0] * p[0] - self[1] * p[1] - self[2] * p[2] - self[3] * p[3]) / rsq
+        c1 = (p[0] + v0) / (rsq + self[0])
+        return FourVector(
+            v0, p[1] - c1 * self[1], p[2] - c1 * self[2], p[3] - c1 * self[3]
+        )
+
+    def boost_back(self, p=None, mass=None):
+        """
+        Return the Lorentz boost-back of this four-vector given a
+        momentum four-vector `p` and an optional `mass`. If `p` is not
+        given, the four-vector is boosted back to its own rest frame.
+        """
+        from math import sqrt
+
+        rsq = sqrt(self[0] ** 2 - self[1] ** 2 - self[2] ** 2 - self[3] ** 2)
+        v0 = (self[0] * p[0] + self[1] * p[1] + self[2] * p[2] + self[3] * p[3]) / rsq
+        c1 = (p[0] + v0) / (rsq + self[0])
+        return FourVector(
+            v0, p[1] + c1 * self[1], p[2] + c1 * self[2], p[3] + c1 * self[3]
+        )
+
 
 class BoostMatrix(Matrix):
     """
