@@ -243,7 +243,7 @@ class Particle:
     This class represents a particle.
     """
 
-    def __init__(self, data, p, c = [0,0], h = 0.):
+    def __init__(self, data, p, c=[0, 0], h=0.0):
         """
         Initialize the `Particle` class, given `data` of type
         `ParticleData` for that particle type, the momentum
