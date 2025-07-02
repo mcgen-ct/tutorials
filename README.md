@@ -23,3 +23,14 @@ These are the tutorials for the Monte Carlo general education network (MCgen).
 * [unsupervised learning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/unsupervised.ipynb)
 * [normalizing flows](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/flows.ipynb)
 * [boosted decision trees](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/decision_trees_random_forests_boosted_decision_trees.ipynb)
+
+## License
+
+These tutorials are licensed under the GNU GPL version 2, or later and are copyrighted (C) 2025 by the MCgen authors. These tutorials are free software; you can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or any later version.
+These tutorials are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License or [`LICENSE.md`](LICENSE.md) for more details.
+
+## MCgen Members
+
+* Philip Ilten
+* Tony Menzo
+* Rikab 
