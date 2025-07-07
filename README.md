@@ -23,6 +23,7 @@ These are the tutorials for the Monte Carlo general education network (MCgen). T
 * [unsupervised learning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/unsupervised.ipynb)
 * [normalizing flows](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/flows.ipynb)
 * [boosted decision trees](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/decision_trees_random_forests_boosted_decision_trees.ipynb)
+* [top tagging](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/example_top_dataset.ipynb)
 
 ## License
 
