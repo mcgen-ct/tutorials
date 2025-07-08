@@ -15,33 +15,32 @@ This branch of `mcgen-ct/tutorials` is a snapshot of the tutorials used during t
 
 * [MC1](pdf/lectures/mc1.pdf) - introduction and Monte Carlo techniques
 * [MC2](pdf/lectures/mc2.pdf) - matrix elements and parton showers
-* [MC3](pdf/lectures/mc3.pdf) - multi-parton interactions, hadronization, and
-no[-pe](urbative effects    )
+* [MC3](pdf/lectures/mc3.pdf) - multi-parton interactions, hadronization, and non-perurbative effects
 * [ML1](pdf/lectures/ml1.pdf) - introduction to machine learning
 * [ML2](pdf/lectures/ml2.pdf) - advanced machine learning techniques
 
 ## Monte Carlo Notebooks
 
-* [Pythia](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/pythia/worksheet.ipynb) [[archived pdf]](pdf/pythia/worksheet.pdf)
-* [tuning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/pythia/tuning.ipynb) [[archived pdf]](pdf/pythia/tuning.pdf)
-* [random number generation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/mc/rng.ipynb) [[archived pdf]](pdf/mc/rng.pdf)
-* [integration and sampling](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/mc/integrate.ipynb) [[archived pdf]](pdf/mc/integreate.pdf)
-* [hard process](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/mc/hard_process.ipynb) [[archived pdf]](pdf/mc/hard_process.pdf)
-* [parton showers](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/mc/parton_shower.ipynb) [[archived pdf]](pdf/mc/parton_shower.pdf)
-* [hadronization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/mc/hadronization.ipynb) [[archived pdf]](pdf/mc/hadronization.pdf)
-* [visualization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/vistas/vistas.ipynb) [[archived pdf]](pdf/vistas/vistas.pdf)
+* [Pythia](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/pythia/worksheet.ipynb) [\[archived pdf\]](pdf/pythia/worksheet.pdf)
+* [tuning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/pythia/tuning.ipynb) [\[archived pdf\]](pdf/pythia/tuning.pdf)
+* [random number generation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/mc/rng.ipynb) [\[archived pdf\]](pdf/mc/rng.pdf)
+* [integration and sampling](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/mc/integrate.ipynb) [\[archived pdf\]](pdf/mc/integreate.pdf)
+* [hard process](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/mc/hard_process.ipynb) [\[archived pdf\]](pdf/mc/hard_process.pdf)
+* [parton showers](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/mc/parton_shower.ipynb) [\[archived pdf\]](pdf/mc/parton_shower.pdf)
+* [hadronization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/mc/hadronization.ipynb) [\[archived pdf\]](pdf/mc/hadronization.pdf)
+* [visualization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/vistas/vistas.ipynb) [\[archived pdf\]](pdf/vistas/vistas.pdf)
 
 ## Machine Learning Notebooks
 
-* [linear and logistic regression](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/regression.ipynb) [[archived pdf]](pdf/ml/regression.pdf)
-* [classification](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/classify.ipynb) [[archived pdf]](pdf/ml/classify.pdf)
-* [auto-differentiation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/autodiff.ipynb) [[archived pdf]](pdf/ml/autodiff.pdf)
-* [neural networks](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/neural_networks.ipynb) [[archived pdf]](pdf/ml/neural_networks.pdf)
-* [neural networks with standard tools](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/neural_networks_jax_pytorch_tensorflow.ipynb) [[archived pdf]](pdf/ml/neural_networks_jax_pytorch_tensorflow.pdf)
-* [unsupervised learning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/unsupervised.ipynb) [[archived pdf]](pdf/ml/unsupervised.pdf)
-* [normalizing flows](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/flows.ipynb) [[archived pdf]](pdf/ml/flows.pdf)
-* [boosted decision trees](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/trees.ipynb) [[archived pdf]](pdf/ml/trees.pdf)
-* [top tagging](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/top_tagging.ipynb) [[archived pdf]](pdf/ml/top_tagging.pdf)
+* [linear and logistic regression](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/regression.ipynb) [\[archived pdf\]](pdf/ml/regression.pdf)
+* [classification](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/classify.ipynb) [\[archived pdf\]](pdf/ml/classify.pdf)
+* [auto-differentiation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/autodiff.ipynb) [\[archived pdf\]](pdf/ml/autodiff.pdf)
+* [neural networks](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/neural_networks.ipynb) [\[archived pdf\]](pdf/ml/neural_networks.pdf)
+* [neural networks with standard tools](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/neural_networks_jax_pytorch_tensorflow.ipynb) [\[archived pdf\]](pdf/ml/neural_networks_jax_pytorch_tensorflow.pdf)
+* [unsupervised learning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/unsupervised.ipynb) [\[archived pdf\]](pdf/ml/unsupervised.pdf)
+* [normalizing flows](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/flows.ipynb) [\[archived pdf\]](pdf/ml/flows.pdf)
+* [boosted decision trees](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/trees.ipynb) [\[archived pdf\]](pdf/ml/trees.pdf)
+* [top tagging](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2025-cteq/ml/top_tagging.ipynb) [\[archived pdf\]](pdf/ml/top_tagging.pdf)
 
 ## Notebook Requirements
 
