@@ -4,6 +4,7 @@ These are the tutorials for the Monte Carlo general education network (MCgen). T
 
 ## Monte Carlo
 
+* [visualization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/vistas.ipynb)
 * [Pythia](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/worksheet.ipynb)
 * [tuning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/tuning.ipynb)
 * [random number generation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/rng.ipynb)
@@ -11,7 +12,6 @@ These are the tutorials for the Monte Carlo general education network (MCgen). T
 * [hard process](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hard_process.ipynb)
 * [parton showers](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/parton_shower.ipynb)
 * [hadronization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hadronization.ipynb)
-* [visualization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/vistas/vistas.ipynb)
 
 ## Machine Learning
 
