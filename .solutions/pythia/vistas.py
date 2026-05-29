@@ -61,14 +61,14 @@ class Vistas:
                   event.
         """
         # Allow this class to be used outside the Pythia 8 library.
-        global Vec4, Event, costheta
+        global Vec4, Event, SlowJet, costheta
         try:
-            Vec4, Event, costheta
+            Vec4, Event, SlowJet, costheta
         except NameError:
             try:
-                from pythia8 import Vec4, Event, costheta
+                from pythia8 import Vec4, Event, SlowJet, costheta
             except:
-                from pythia8mc import Vec4, Event, costheta
+                from pythia8mc import Vec4, Event, SlowJet, costheta
         # Local instance of Pythia.
         self.pythia = pythia
         # Particle selector.
@@ -90,13 +90,13 @@ class Vistas:
             "decay": {"range": (91, 99)},
             "beam": {"range": (11, 19)},
             "beam remnants": {"range": (61, 69)},
-            "color flow": {
-                "range": (0, 0),
-            },
+            "color flow": {"range": (0, 0)},
             "other": {"range": (0, 0)},
+            "boosted frame jets": {"range": (0, 0)},
         }
         # Set the colors (rainbow, from red to magenta).
-        skip, idx = ["hard process", "color flow", "other"], 0
+        skip = ["hard process", "color flow", "other", "boosted frame jets"]
+        idx = 0
         for key, val in self.cdb.items():
             if key in skip:
                 continue
@@ -105,17 +105,19 @@ class Vistas:
         self.cdb["hard process"]["color"] = Vistas.color(1)
         self.cdb["color flow"]["color"] = Vistas.chroma(-0.6, "000000")
         self.cdb["other"]["color"] = Vistas.chroma(-0.2, "000000")
+        self.cdb["boosted frame jets"]["color"] = Vistas.chroma(-0.8, "000000")
         # Set the options.
         self.opts = self.options()
         # Set the event number.
         self.idx = 0
 
     # ----------------------------------------------------------------------
-    def data(self, event=None):
+    def data(self, event=None, jets=None):
         """
         Returns the JSON data needed to visualize an event.
 
         event: optional PYTHIA event, otherwise from internal PYTHIA object.
+        jets:  optional jets in the boosted frame, built otherwise.
         """
         # Increment the event number.
         self.idx += 1
@@ -136,10 +138,13 @@ class Vistas:
         self.part = []  # List of partially added vertices.
         # Color flow map.
         self.cflow = {"color": {}, "anti-color": {}}
+        # Jets.
+        self.jets = {"boosted frame jets": jets}
         # Camera position.
         self.camera = [0, 0, 0]
 
         # Boost the event, if requested.
+        bst = None
         if self.opts["frame"] in ["hard process", "beam"]:
             code = 12 if self.opts["frame"] == "beam" else 21
             bst = sum(
@@ -148,6 +153,25 @@ class Vistas:
             )
             bst.flip3()
             self.bst.bst(bst)
+
+        # Build the jets, if requested.
+        opt = self.opts["jets"]
+        if opt["algorithm"]:
+            alg = {"akt": -1, "ca": 0, "kt": 1}[opt["algorithm"]]
+            sel = {"all": 1, "visible": 2, "charged": 3}[opt["select"]]
+            mass = {"zero": 0, "pion": 1, "gen": 2}[opt["mass"]]
+            # Create the jet building algorithm.
+            alg = SlowJet(alg, opt["r"], opt["ptmin"], opt["etamax"], sel, mass)
+            # Boosted frame jets.
+            if self.jets["boosted frame jets"] is None:
+                alg.analyze(self.lab)
+                self.jets["boosted frame jets"] = [
+                    (alg.p(idx), alg.p(idx)) for idx in range(0, alg.sizeJet())
+                ]
+                # Find the boosted momentum.
+                if bst is not None:
+                    for pl, pb in self.jets["boosted frame jets"]:
+                        pb.bst(bst)
 
         # Create the graph.
         for idx in range(self.bst.size() - 1, 0, -1):
@@ -185,14 +209,30 @@ class Vistas:
                         oLim[0] = min(val, oLim[0])
                         oLim[1] = max(val, oLim[1])
 
+        # Determine the min/max observable for jets.
+        for key, jets in self.jets.items():
+            if not jets:
+                continue
+            o = self.opts["jets"]["observable"]
+            self.ocats[key] = {o: [float("inf"), float("-inf")]}
+            for pl, pb in jets:
+                val = getattr(pl, o)()
+                oLim = self.ocats[key][o]
+                oLim[0] = min(val, oLim[0])
+                oLim[1] = max(val, oLim[1])
+
         # Create the JSON dictionary.
         data = {
             "Pythia 8 Event": {
-                "Tracks": {name: [] for name in self.cdb},
+                "Tracks": {key: [] for key in self.cdb if not "jet" in key},
                 "event number": self.idx,
                 "run number": self.pythia.settings.mode("Random:seed"),
             }
         }
+        if self.opts["jets"]["algorithm"]:
+            data["Pythia 8 Event"]["Jets"] = {
+                key: [] for key in self.cdb if "jet" in key
+            }
 
         # Save the MPI + hard vertices to JSON, step along x-direction.
         stp = Vec4(self.opts["length"]["factor"] * self.opts["mpi"], 0, 0, 0)
@@ -213,6 +253,10 @@ class Vistas:
 
         # Save the color flow to JSON.
         self.saveColorFlow(dct=data["Pythia 8 Event"]["Tracks"]["color flow"])
+
+        # Save the jets.
+        if "Jets" in data["Pythia 8 Event"]:
+            self.saveJets(dct=data["Pythia 8 Event"]["Jets"])
 
         # Return the data.
         return data
@@ -235,13 +279,14 @@ class Vistas:
         labels = level("Labels", 1, False, False)
         event = level("Event Data", 1, True, True)
         tracks = level("Tracks", 2, True, True)
+        jets = level("Jets", 2, True, True)
         # Turn off the detector elements.
         cfg["phoenixMenu"]["children"].extend([detector, labels, event])
         for sub in ("PST", "Beampipe", "Pixel", "Long Strip", "Short Strip"):
             detector["children"].append(level(sub, 2, False, False))
         # Set up the track categories.
-        for cat in self.cdb:
-            cat = level(cat, 3, cat in self.opts["show"], False)
+        for key in self.cdb:
+            cat = level(key, 3, key in self.opts["show"], False)
             cuts = level("Cut Options", 4, False, False)
             # Set up the cuts.
             cuts["configs"].extend(
@@ -269,8 +314,13 @@ class Vistas:
                     }
                 )
             cat["children"].append(cuts)
-            tracks["children"].append(cat)
+            if "jet" in key:
+                jets["children"].append(cat)
+            else:
+                tracks["children"].append(cat)
         event["children"].append(tracks)
+        if self.opts["jets"]["algorithm"]:
+            event["children"].append(jets)
         # Set cuts and event display.
         cfg["eventDisplay"] = {
             "cameraPosition": [0, max(250, 1.5 * max(self.camera)), 0],
@@ -296,8 +346,8 @@ class Vistas:
         "show":
            [<str>, ...]
            list of categories passed as strings to toggle on for showing in
-           the visualization. By default, all categories are on. If toggled
-           off, that category can still be shown by switching the toggle.
+           the visualization. If toggled off, that category can still be shown
+           by switching the toggle.
         "highlight":
            [<str>, ...]
            list of categories to highlight. All other categories are
@@ -306,6 +356,43 @@ class Vistas:
            <float>
            controls the sub-collision separation. This factor
            is multiplied by the "length:factor" do determine the separation.
+        "jets":
+           <dct>
+           dicationary that controls jet building and display. These
+           options map to the arguments of the Pythia SlowJet constructor.
+
+           - "algorithm":
+                <str>
+                - None: do not build jets.
+                - "akt": anti-kT algorithm.
+                - "ca": Cambridge/Aachen algorithm.
+                - "kt": kT algorithm.
+           - "r":
+                <float>
+                the jet size parameter related to the radius of the jet cone.
+           - "ptmin":
+                <float>
+                minimum transverse momentum of the jets.
+           - "etamax":
+                <float>
+                maximum pseudorapidity of particles to use in the jet buuilding.
+                If above 20, then no pseudorapidity cut is used.
+           - "select":
+                <str>
+                controls which particles are used in the jet building.
+                - "all" : all final-state particles.
+                - "visible : visible final-state particles, e.g., no neutrinos.
+                - "charged" : only charged final-state particles.
+           - "mass":
+                <str>
+                sets the mass of the particles used in the jets.
+                - "zero": all massless.
+                - "pion": everything but photons are asigned the pion mass.
+                - "gen": use the generated mass for each particle.
+           - "length":
+                <dct>'
+                controls how the jets are drawn with the same options as the
+                the following "length" dictionary.
         "length", "color":
            <dct>
            dictionaries that control the length and color attributes of the
@@ -342,12 +429,25 @@ class Vistas:
                 limits the chroma values (-1 white/low scale, +1
                 black/high scale). If 'max' < 'min' than white/black
                 corresponds to high/low scales.
+        "log":
+           <dct>
+           dictionary of logging levels. Keys are integers and values are
+           strings. Removing an entry prevents that level from printing.
         """
-        return {
+        opts = {
             "frame": "hard process",
-            "show": list(self.cdb.keys()),
+            "show": [key for key in self.cdb],
             "highlight": [],
             "mpi": 1,
+            "jets": {
+                "algorithm": None,
+                "r": 0.5,
+                "ptmin": 20,
+                "etamax": 25,
+                "select": "all",
+                "mass": "gen",
+                "observable": "e",
+            },
             "length": {
                 "scale": "constant",
                 "observable": "e",
@@ -364,7 +464,12 @@ class Vistas:
                 "max": 0.4,
                 "group": "cat",
             },
+            "log": {0: "INFO", 1: "WARNING", 2: "ERROR"},
         }
+        opts["jets"]["length"] = opts["length"].copy()
+        opts["jets"]["length"]["scale"] = "log"
+        opts["jets"]["length"]["factor"] = 800
+        return opts
 
     # ----------------------------------------------------------------------
     def display(
@@ -402,9 +507,10 @@ class Vistas:
         # Create the event data and configuration if needed.
         if data is True:
             data = self.data()
-            self.write("pad", data)
         if cfg is True:
             cfg = self.config()
+        if not data:
+            return False
 
         # This event padding is a hack, but is used to allow the
         # detector geometry to download before the event data so the
@@ -413,8 +519,6 @@ class Vistas:
             data = self.pad(data=data, key="Pythia 8 Event", target=pad)
 
         # Upload the event data and configuration (if requested).
-        if not data:
-            return False
         data = Vistas.upload(data, upload, cernbox)
         if cfg:
             cfg = Vistas.upload(cfg, upload, cernbox)
@@ -595,6 +699,7 @@ class Vistas:
             self.end = end
             self.prt = prt
             self.use = use
+            self.idxs = [key]
             self.status = Vistas.Status(prt.status(), cdb)
 
     # ----------------------------------------------------------------------
@@ -631,6 +736,7 @@ class Vistas:
             moms = [mom for mom in (self.addParticle(i) for i in idxs) if mom.use]
             # Use the closest mother in angle if no selected mother.
             if len(moms) == 0:
+                dtr.idxs.append(idxs[0])
                 dtr.status.update(self.bst[idxs[0]].status())
                 return self.addVertex(idxs[0], dtr=dtr)
             # Use all mothers if a scatter.
@@ -755,16 +861,17 @@ class Vistas:
                 "category": prt.status.name,
                 "name (PDG ID)": f"{self.pdb.name(pid)} ({pid})",
                 "status": f"{self.sdb[prt.status.code]} ({prt.status.code})",
+                "charge x 3": prt.prt.chargeType(),
+                "m": prt.prt.m(),
                 "px": p.px(),
                 "py": p.py(),
                 "pz": p.pz(),
                 "E": p.e(),
+                "color index": (cc, ac),
+                "index": prt.idxs,
                 "pT": p.pT(),
                 "eta": p.eta(),
                 "phi": p.phi(),
-                "charge x 3": prt.prt.chargeType(),
-                "color index": (cc, ac),
-                "index": prt.key,
                 "pos": [
                     [pos[i] for i in (1, 2, 3)],
                     [mid[i] for i in (1, 2, 3)],
@@ -821,9 +928,11 @@ class Vistas:
                 pos = pos.pos[1]
                 end = self.cflow["anti-color"][cc].pos[1]
                 bow = pos + end
+                if bow.pAbs() == 0:
+                    bow = Vec4(0, 1, 0, 0)
                 mid = end - pos
-                bow.rescale3(0.5 * mid.pAbs() / bow.pAbs())
                 mid.rescale3(0.5)
+                bow.rescale3(mid.pAbs() / bow.pAbs())
                 mid = mid + pos + bow
             else:
                 self.log(1, f"missing anti-color {cc}.")
@@ -848,40 +957,78 @@ class Vistas:
                 self.log(1, f"missing color {ac}.")
 
     # ----------------------------------------------------------------------
-    def strength(self, prt, att):
+    def saveJets(self, dct):
+        """
+        Save the jets.
+
+        dct: JSON dictionary to save the jets.
+        """
+        # Set the attribute for determining length scale.
+        att = self.opts["jets"]["length"]
+        r = self.opts["jets"]["r"]
+        # Loop over the jet categories.
+        for key, jets in self.jets.items():
+            if not jets:
+                continue
+            # Add the jets. Note, the color requires a hash, unlike tracks.
+            color = "#" + self.cdb[key]["color"]
+            dct[key] = []
+            for pl, pb in jets:
+                nrm = att["factor"] * (
+                    self.strength(None, att, key, pl) + att["offset"]
+                )
+                dct[key].append(
+                    {
+                        "px": pl.px(),
+                        "py": pl.py(),
+                        "pz": pl.pz(),
+                        "E": pl.e(),
+                        "eta": pb.eta(),
+                        "phi": pb.phi(),
+                        "energy": nrm,
+                        "coneR": r,
+                        "color": color,
+                    }
+                )
+
+    # ----------------------------------------------------------------------
+    def strength(self, prt, att, cat=None, p=None):
         """
         Calculate the strength of a particle, from 0 to 1, for a given
         observable.
 
-        prt: Vista particle to calcualte the strength for.
+        prt: Vista particle to calculate the strength for.
         att: physical attribute dictionary, for either 'length' or 'color'.
+        cat: optional particle category.
+        p:   optional momentum Vec4.
         """
         import math
 
         scale = att["scale"]
-        cat = "all" if att["group"] == "all" else prt.status.name
+        cat = cat if cat else prt.status.name
+        cat = "all" if att["group"] == "all" else cat
         if scale == "constant":
             return 1
         o = att["observable"]
+        p = p if p else self.lab[prt.key].p()
         oMin, oMax = self.ocats[cat][o]
-        oPrt = getattr(self.lab[prt.key].p(), o)()
-        t = (oPrt - oMin) / (oMax - oMin) if oMin != oMax else 1
+        oPrt = getattr(p, o)()
+        r = (oPrt - oMin) / (oMax - oMin) if oMin != oMax else 1
         k = att["skew"]
         if k > 0:
             k = max(1.01, k)
-            return math.log1p((k - 1) * t) / math.log(k)
+            return math.log1p((k - 1) * r) / math.log(k)
         else:
             k = abs(min(-1.01, k))
-            return 1 - math.log1p((k - 1) * (1 - t)) / math.log(k)
+            return 1 - math.log1p((k - 1) * (1 - r)) / math.log(k)
 
     # ----------------------------------------------------------------------
     def log(self, level, message):
         """
         Simple utility to print a log message.
         """
-        levels = {0: "INFO", 1: "WARNING", 2: "ERROR"}
-        if level in levels:
-            print(f"VISTAS {levels[level]}: {message}"),
+        if level in self.opts["log"]:
+            print(f"VISTAS {self.opts['log'][level]}: {message}"),
 
     # ----------------------------------------------------------------------
     @staticmethod
@@ -945,6 +1092,8 @@ class Vistas:
         reGroup = re.compile(r"^\s*\d+\s*-\s*\d*\s*:\s*(.*)$", re.DOTALL)
         # Regular expression for status codes.
         reCodes = re.compile(r"^\s*(\d+(?:\s*,\s*\d+)*)\s*:\s*(.*)$", re.DOTALL)
+        # Regular expression for abbreviating descriptions.
+        reAbbreviate = re.compile(r"[,\[\]()]")
 
         # Loop over the list items.
         sdb, group = {}, None
@@ -960,7 +1109,9 @@ class Vistas:
                     txt = clean(matchCodes.group(2))
                     # Loop over the status codes.
                     for code in re.split(r",\s*", matchCodes.group(1)):
-                        sdb[int(code)] = "[" + group + "] " + txt
+                        # Abbreviate the summary.
+                        abb = re.split(reAbbreviate, txt)
+                        sdb[int(code)] = "[" + group + "] " + abb[0]
         return sdb
 
     # ----------------------------------------------------------------------
