@@ -4,26 +4,26 @@ These are the tutorials for the Monte Carlo general education network (MCgen). T
 
 ## Monte Carlo
 
-* [visualization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/vistas.ipynb)
-* [Pythia](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/worksheet.ipynb)
-* [tuning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/tuning.ipynb)
-* [random number generation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/rng.ipynb)
-* [integration and sampling](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/integrate.ipynb)
-* [hard process](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hard_process.ipynb)
-* [parton showers](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/parton_shower.ipynb)
-* [hadronization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hadronization.ipynb)
+* [visualization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/pythia/vistas.ipynb)
+* [Pythia](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/pythia/worksheet.ipynb)
+* [tuning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/pythia/tuning.ipynb)
+* [random number generation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/mc/rng.ipynb)
+* [integration and sampling](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/mc/integrate.ipynb)
+* [hard process](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/mc/hard_process.ipynb)
+* [parton showers](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/mc/parton_shower.ipynb)
+* [hadronization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/mc/hadronization.ipynb)
 
 ## Machine Learning
 
-* [linear and logistic regression](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/regression.ipynb)
-* [classification](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/classify.ipynb)
-* [auto-differentiation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/autodiff.ipynb)
-* [neural networks](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/neural_networks.ipynb)
-* [neural networks with standard tools](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/neural_networks_jax_pytorch_tensorflow.ipynb)
-* [unsupervised learning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/unsupervised.ipynb)
-* [normalizing flows](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/flows.ipynb)
-* [boosted decision trees](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/trees.ipynb)
-* [top tagging](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/top_tagging.ipynb)
+* [linear and logistic regression](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/ml/regression.ipynb)
+* [classification](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/ml/classify.ipynb)
+* [auto-differentiation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/ml/autodiff.ipynb)
+* [neural networks](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/ml/neural_networks.ipynb)
+* [neural networks with standard tools](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/ml/neural_networks_jax_pytorch_tensorflow.ipynb)
+* [unsupervised learning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/ml/unsupervised.ipynb)
+* [normalizing flows](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/ml/flows.ipynb)
+* [boosted decision trees](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/ml/trees.ipynb)
+* [top tagging](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cnfs/ml/top_tagging.ipynb)
 
 ## License
 
