@@ -22,6 +22,16 @@ This branch of `mcgen-ct/tutorials` is a snapshot of the tutorials being used du
   - [parton showers](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cfns/mc/parton_shower.ipynb)
   - [hadronization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/2026-cfns/mc/hadronization.ipynb)
 
+## Useful Resources
+
+* [MCnet](https://www.montecarlonet.org/) network of MC generator groups
+* [MCgen](https://mcgenednet.github.io/) network for MC training
+* [QCD and Collider Physics](https://inspirehep.net/literature/328604) by Ellis, Stirling, and Webber
+* [Pythia 6 Physics and Manual](https://inspirehep.net/literature/712925) by Sjöstrand, Mrenna, and Skands
+* [A comprehensive guide to the physics and usage of PYTHIA 8.3](https://inspirehep.net/literature/2056998) by Bierlich, *et al.*
+* [General-purpose event generators for LHC physics](https://inspirehep.net/literature/884202) by Buckley, *et al.*
+* [Introduction to parton-shower event generators](https://inspirehep.net/literature/1328513) by Höche
+
 ## Complete List of Notebooks
 
 ### Monte Carlo Notebooks
@@ -66,35 +76,36 @@ A number of external packages are used in the notebooks above. For each notebook
 * [`ml/regression.ipynb`](ml/regression.ipynb): `matplotlib`, `numpy`, `os`, `scipy`, `sklearn`
 * [`ml/unsupervised.ipynb`](ml/unsupervised.ipynb): `matplotlib`, `numpy`, `os`, `sklearn`
 * [`pythia/tuning.ipynb`](pythia/tuning.ipynb): `math`, `matplotlib`, `numpy`, `pythia8mc`, `wurlitzer`
+* [`pythia/vistas.ipynb`](pythia/vistas.ipynb): `pythia8mc`, `wurlitzer`
 * [`pythia/worksheet.ipynb`](pythia/worksheet.ipynb): `argparse`, `matplotlib`, `os`, `pythia8mc`, `wurlitzer`
 
 At the time of running this school the following package versions were used in Colab.
 
-* `argparse`: `1.4.0`
-* `bs4`: `0.0.2`
-* `cv2`: `4.11.0`
+* `argparse`: `1.1`
+* `bs4`: `4.13.5`
+* `cv2`: `4.13.0`
 * `graphviz`: `0.21`
-* `h5py`: `3.14.0`
+* `h5py`: `3.16.0`
 * `inspect`: `built-in`
-* `jax`: `0.5.2`
+* `jax`: `0.7.2`
 * `math`: `built-in`
 * `matplotlib`: `3.10.0`
 * `nflows`: `0.14`
 * `numpy`: `2.0.2`
 * `os`: `built-in`
 * `pandas`: `2.2.2`
-* `pythia8mc`: `8.315.0`
-* `python`: `3.11.13 (main, Jun  4 2025, 08:57:29) [GCC 11.4.0]`
-* `scipy`: `1.15.3`
+* `pythia8mc`: `8.317.1`
+* `python`: `3.12.13 (main, Mar  4 2026, 09:23:07) [GCC 11.4.0]`
+* `scipy`: `1.16.3`
 * `sklearn`: `1.6.1`
 * `sys`: `built-in`
-* `tensorflow`: `2.18.0`
+* `tensorflow`: `2.20.0`
 * `time`: `built-in`
-* `torch`: `2.6.0+cu124`
-* `tqdm`: `4.67.1`
+* `torch`: `2.11.0+cpu`
+* `tqdm`: `4.67.3`
 * `urllib`: `built-in`
 * `wurlitzer`: `3.1.1`
-* `xgboost`: `2.1.4`
+* `xgboost`: `3.2.0`
 
 ## License
 
@@ -121,6 +132,6 @@ These tutorials are licensed under the GNU GPL version 2, or later and are copyr
 
 These tutorials have been in used in the following schools, either directly run by MCgen, or with support from MCgen. Each school listed below has a frozen branch which archives the tutorials as used for that specific school.
 
+* 2026/06/01 - 2026/06/12 [CFNS](https://indico.cfnssbu.physics.sunysb.edu/event/604/) with branch [`2026-cfns`](../../tree/2026-cfns)
 * 2025/06/15 - 2025/06/27 [CTEQ-MCgen](https://indico.cern.ch/event/1497407/) with branch [`2025-cteq`](../../tree/2025-cteq)
   - `2025-cteq-v0`: tag for initial archived branch commit
-* 2026/06/01 - 2026/06/12 [CFNS](https://indico.cfnssbu.physics.sunysb.edu/event/604/) with branch [`2026-cfns`](../../tree/2026-cfns)
