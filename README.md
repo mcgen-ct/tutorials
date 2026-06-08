@@ -2,7 +2,7 @@
 
 These are the tutorials for the Monte Carlo general education network (MCgen). The primary repository for these tutorials is [gitlab.cern.ch/mcgen-ct/tutorials](https://gitlab.com/mcgen-ct/tutorials), which is mirrored at [github.com/mcgen-ct/tutorials](https://github.com/mcgen-ct/tutorials) so they can be directly accessed via Google's Colab. This project is supported by NSF grant OAC-2417682.
 
-This branch of `mcgen-ct/tutorials` is a snapshot of the tutorials being used during the [2026 CFNS summer school](https://indico.cfnssbu.physics.sunysb.edu/event/604/) which is running from 2026/06/01 - 2026/06/12.
+This branch of `mcgen-ct/tutorials` is a snapshot of the tutorials being used during the [2026 CFNS summer school](https://indico.cfnssbu.physics.sunysb.edu/event/604/) which ran from 2026/06/01 - 2026/06/12.
 
 ## Lecturers
 
@@ -133,5 +133,6 @@ These tutorials are licensed under the GNU GPL version 2, or later and are copyr
 These tutorials have been in used in the following schools, either directly run by MCgen, or with support from MCgen. Each school listed below has a frozen branch which archives the tutorials as used for that specific school.
 
 * 2026/06/01 - 2026/06/12 [CFNS](https://indico.cfnssbu.physics.sunysb.edu/event/604/) with branch [`2026-cfns`](../../tree/2026-cfns)
+  - `2026-cfns-v0`: tag for initial archived branch commit
 * 2025/06/15 - 2025/06/27 [CTEQ-MCgen](https://indico.cern.ch/event/1497407/) with branch [`2025-cteq`](../../tree/2025-cteq)
   - `2025-cteq-v0`: tag for initial archived branch commit
