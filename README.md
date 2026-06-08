@@ -40,11 +40,15 @@ These tutorials are licensed under the GNU GPL version 2, or later and are copyr
 * Ben Nachman
 * Manuel Szewc
 * Michael Wilkinson
-* Ahmed Youssef
 * Jure Zupan
+
+## Former Members
+
+* Ahmed Youssef
 
 ## MCgen Schools
 
 These tutorials have been in used in the following schools, either directly run by MCgen, or with support from MCgen. Each school listed below has a frozen branch which archives the tutorials as used for that specific school.
 
+* 2026/06/01 - 2026/06/12 [CFNS](https://indico.cfnssbu.physics.sunysb.edu/event/604/) with branch [`2026-cfns`](../../tree/2026-cfns)
 * 2025/06/15 - 2025/06/27 [CTEQ-MCgen](https://indico.cern.ch/event/1497407/) with branch [`2025-cteq`](../../tree/2025-cteq)
