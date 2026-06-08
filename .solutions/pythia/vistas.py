@@ -429,7 +429,7 @@ class Vistas:
                 limits the chroma values (-1 white/low scale, +1
                 black/high scale). If 'max' < 'min' than white/black
                 corresponds to high/low scales.
-        "log":
+        "verbosity":
            <dct>
            dictionary of logging levels. Keys are integers and values are
            strings. Removing an entry prevents that level from printing.
@@ -464,7 +464,7 @@ class Vistas:
                 "max": 0.4,
                 "group": "cat",
             },
-            "log": {0: "INFO", 1: "WARNING", 2: "ERROR"},
+            "verbosity": {0: "INFO", 1: "WARNING", 2: "ERROR"},
         }
         opts["jets"]["length"] = opts["length"].copy()
         opts["jets"]["length"]["scale"] = "log"
@@ -1027,8 +1027,8 @@ class Vistas:
         """
         Simple utility to print a log message.
         """
-        if level in self.opts["log"]:
-            print(f"VISTAS {self.opts['log'][level]}: {message}"),
+        if level in self.opts["verbosity"]:
+            print(f"VISTAS {self.opts['verbosity'][level]}: {message}"),
 
     # ----------------------------------------------------------------------
     @staticmethod
