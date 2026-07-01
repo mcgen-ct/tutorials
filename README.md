@@ -25,6 +25,10 @@ These are the tutorials for the Monte Carlo general education network (MCgen). T
 * [boosted decision trees](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/trees.ipynb)
 * [top tagging](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/top_tagging.ipynb)
 
+## Other
+
+* [numerical precision](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/other/numerics.ipynb)
+
 ## License
 
 These tutorials are licensed under the GNU GPL version 2, or later and are copyrighted (C) 2025 by the MCgen authors. These tutorials are free software; you can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or any later version. These tutorials are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License or [`LICENSE.md`](LICENSE.md) for more details.
