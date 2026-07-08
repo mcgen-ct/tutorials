@@ -119,6 +119,8 @@ class Vistas:
         event: optional PYTHIA event, otherwise from internal PYTHIA object.
         jets:  optional jets in the boosted frame, built otherwise.
         """
+        import math
+
         # Increment the event number.
         self.idx += 1
 
@@ -203,11 +205,11 @@ class Vistas:
             }
             for key, prt in self.prts.items():
                 for o in obs:
-                    val = getattr(self.lab[prt.key].p(), o)()
+                    oVal = eval(o, {"math": math, "p": self.lab[prt.key]})
                     for cat in (prt.status.name, "all"):
                         oLim = self.ocats[cat][o]
-                        oLim[0] = min(val, oLim[0])
-                        oLim[1] = max(val, oLim[1])
+                        oLim[0] = min(oVal, oLim[0])
+                        oLim[1] = max(oVal, oLim[1])
 
         # Determine the min/max observable for jets.
         for key, jets in self.jets.items():
@@ -216,10 +218,10 @@ class Vistas:
             o = self.opts["jets"]["observable"]
             self.ocats[key] = {o: [float("inf"), float("-inf")]}
             for pl, pb in jets:
-                val = getattr(pl, o)()
+                oVal = eval(o, {"math": math, "p": pl})
                 oLim = self.ocats[key][o]
-                oLim[0] = min(val, oLim[0])
-                oLim[1] = max(val, oLim[1])
+                oLim[0] = min(oVal, oLim[0])
+                oLim[1] = max(oVal, oLim[1])
 
         # Create the JSON dictionary.
         data = {
@@ -360,7 +362,6 @@ class Vistas:
            <dct>
            dicationary that controls jet building and display. These
            options map to the arguments of the Pythia SlowJet constructor.
-
            - "algorithm":
                 <str>
                 - None: do not build jets.
@@ -405,8 +406,11 @@ class Vistas:
            - "observable":
                 <str>
                 use this observable for calculating the log scale.
-                The value can be a string of any 'Vec4' method from PYTHIA,
-                e.g., "e", "pT", etc.
+                The value can be any valid Python string where 'p' is the
+                PYTHIA 'Particle' object, e.g., "p.e()" or "p.pT()" would
+                access the particle energy or pT. For jets, 'p' is a PYTHIA
+                'Vec4" object instead but the kinematic methods are the same
+                as for 'Particle'.
            - "skew":
                 <float>
                 must be larger/smaller than +1/-1. If +1/-1, then the log
@@ -446,11 +450,11 @@ class Vistas:
                 "etamax": 25,
                 "select": "all",
                 "mass": "gen",
-                "observable": "e",
+                "observable": "p.e()",
             },
             "length": {
                 "scale": "constant",
-                "observable": "e",
+                "observable": "p.e()",
                 "skew": 1e5,
                 "group": "cat",
                 "factor": 80,
@@ -458,7 +462,7 @@ class Vistas:
             },
             "color": {
                 "scale": "log",
-                "observable": "e",
+                "observable": "p.e()",
                 "skew": 10,
                 "min": -0.4,
                 "max": 0.4,
@@ -660,8 +664,8 @@ class Vistas:
         key:  vertex key, either two particle indices '(idx1, idx2)' or a
               single particle index.
         pos:  if saved to JSON, position of this vertex.
-        moms: set of mother particles of type Particle.
-        dtrs: set of daughter particles of type Particle.
+        moms: list of mother particles of type Particle.
+        dtrs: list of daughter particles of type Particle.
         """
 
         # ------------------------------------------------------------------
@@ -671,8 +675,8 @@ class Vistas:
             """
             self.key = key
             self.pos = None
-            self.moms = set(moms)
-            self.dtrs = set(dtrs)
+            self.moms = dict.fromkeys(moms)
+            self.dtrs = dict.fromkeys(dtrs)
 
     # ----------------------------------------------------------------------
     class Particle:
@@ -718,7 +722,7 @@ class Vistas:
             vrt = self.vrts[key]
             if dtr.use:
                 dtr.pro = vrt
-                vrt.dtrs.add(dtr)
+                vrt.dtrs[dtr] = None
             return vrt
         # Create the vertex otherwise.
         else:
@@ -761,7 +765,7 @@ class Vistas:
         # Set the daughter info.
         if dtr.use:
             dtr.pro = vrt
-            vrt.dtrs.add(dtr)
+            vrt.dtrs[dtr] = None
         # Return the vertex.
         return vrt
 
@@ -826,7 +830,10 @@ class Vistas:
 
         # Set the step size.
         att = self.opts["length"]
-        nrm = att["factor"] * self.strength(prt, att) + att["offset"]
+        nrm = (
+            att["factor"] * self.strength(self.lab[prt.key], att, prt.status.name)
+            + att["offset"]
+        )
         stp = prt.prt.p()
         if stp.pAbs() == 0:
             stp = Vec4(0, 0.5 * nrm, 0, 0)
@@ -849,7 +856,10 @@ class Vistas:
         else:
             att = self.opts["color"]
             dif = att["max"] - att["min"]
-            nrm = dif * self.strength(prt, att) + att["min"]
+            nrm = (
+                dif * self.strength(self.lab[prt.key], att, prt.status.name)
+                + att["min"]
+            )
             color = Vistas.chroma(nrm, self.cdb[prt.status.name]["color"])
 
         # Set the particle data.
@@ -974,9 +984,7 @@ class Vistas:
             color = "#" + self.cdb[key]["color"]
             dct[key] = []
             for pl, pb in jets:
-                nrm = att["factor"] * (
-                    self.strength(None, att, key, pl) + att["offset"]
-                )
+                nrm = att["factor"] * (self.strength(pl, att, key) + att["offset"])
                 dct[key].append(
                     {
                         "px": pl.px(),
@@ -992,28 +1000,24 @@ class Vistas:
                 )
 
     # ----------------------------------------------------------------------
-    def strength(self, prt, att, cat=None, p=None):
+    def strength(self, prt, att, cat):
         """
         Calculate the strength of a particle, from 0 to 1, for a given
         observable.
 
-        prt: Vista particle to calculate the strength for.
+        prt: PYTHIA particle to calculate the strength for.
         att: physical attribute dictionary, for either 'length' or 'color'.
-        cat: optional particle category.
-        p:   optional momentum Vec4.
+        cat: particle category.
         """
         import math
 
         scale = att["scale"]
-        cat = cat if cat else prt.status.name
         cat = "all" if att["group"] == "all" else cat
         if scale == "constant":
             return 1
-        o = att["observable"]
-        p = p if p else self.lab[prt.key].p()
-        oMin, oMax = self.ocats[cat][o]
-        oPrt = getattr(p, o)()
-        r = (oPrt - oMin) / (oMax - oMin) if oMin != oMax else 1
+        oMin, oMax = self.ocats[cat][att["observable"]]
+        oVal = eval(att["observable"], {"math": math, "p": prt})
+        r = (oVal - oMin) / (oMax - oMin) if oMin != oMax else 1
         k = att["skew"]
         if k > 0:
             k = max(1.01, k)
