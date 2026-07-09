@@ -24,6 +24,7 @@ These are the tutorials for the Monte Carlo general education network (MCgen). T
 * [normalizing flows](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/flows.ipynb)
 * [boosted decision trees](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/trees.ipynb)
 * [top tagging](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/top_tagging.ipynb)
+* [flavor tagging](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/flavor_tagging.ipynb)
 
 ## Other
 
