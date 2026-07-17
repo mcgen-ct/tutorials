@@ -5,7 +5,7 @@ These are the tutorials for the Monte Carlo general education network (MCgen). T
 ## Monte Carlo
 
 * [visualization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/vistas.ipynb)
-  [[solutions]](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/pythia/vistas.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/pythia/vistas.ipynb)
 * [Pythia](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/worksheet.ipynb)
 * [tuning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/tuning.ipynb)
 * [random number generation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/rng.ipynb)
