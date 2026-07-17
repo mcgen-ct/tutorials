@@ -1,35 +1,53 @@
 # Tutorials
 
-These are the tutorials for the Monte Carlo general education network (MCgen). The primary repository for these tutorials is [gitlab.cern.ch/mcgen-ct/tutorials](https://gitlab.com/mcgen-ct/tutorials), which is mirrored at [github.com/mcgen-ct/tutorials](https://github.com/mcgen-ct/tutorials) so they can be directly accessed via Google's Colab. This project is supported by NSF grant OAC-2417682.
+These are the tutorials for the Monte Carlo general education network (MCgen). The primary repository for these tutorials is [gitlab.cern.ch/mcgen-ct/tutorials](https://gitlab.com/mcgen-ct/tutorials), which is mirrored at [github.com/mcgen-ct/tutorials](https://github.com/mcgen-ct/tutorials) so they can be directly accessed via Google's Colab. Solutions are also provided for each notebook, although students are asked to first make a best effort completing notebooks before looking at these solutions. This project is supported by NSF grant OAC-2417682.
 
 ## Monte Carlo
 
 * [visualization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/vistas.ipynb)
   [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/pythia/vistas.ipynb)
 * [Pythia](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/worksheet.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/pythia/worksheet.ipynb)
 * [tuning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/pythia/tuning.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/pythia/tuning.ipynb)
 * [random number generation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/rng.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/mc/rng.ipynb)
 * [integration and sampling](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/integrate.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/mc/integrate.ipynb)
 * [hard process](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hard_process.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/mc/hard_process.ipynb)
 * [parton showers](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/parton_shower.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/mc/parton_shower.ipynb)
 * [hadronization](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/mc/hadronization.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/mc/hadronization.ipynb)
 
 ## Machine Learning
 
 * [linear and logistic regression](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/regression.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/ml/regression.ipynb)
 * [classification](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/classify.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/ml/classify.ipynb)
 * [auto-differentiation](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/autodiff.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/ml/autodiff.ipynb)
 * [neural networks](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/neural_networks.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/ml/neural_networks.ipynb)
 * [neural networks with standard tools](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/neural_networks_jax_pytorch_tensorflow.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/ml/neural_networks_jax_pytorch_tensorflow.ipynb)
 * [unsupervised learning](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/unsupervised.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/ml/unsupervised.ipynb)
 * [normalizing flows](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/flows.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/ml/flows.ipynb)
 * [boosted decision trees](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/trees.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/ml/trees.ipynb)
 * [top tagging](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/top_tagging.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/ml/top_tagging.ipynb)
 * [flavor tagging](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/ml/flavor_tagging.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/ml/flavor_tagging.ipynb)
 
 ## Other
 
 * [numerical precision](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/other/numerics.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/other/numerics.ipynb)
 
 ## License
 
