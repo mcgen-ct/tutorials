@@ -48,6 +48,8 @@ These are the tutorials for the Monte Carlo general education network (MCgen). T
 
 * [numerical precision](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/other/numerics.ipynb)
   [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/other/numerics.ipynb)
+* [the Standard Model](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/other/ajp.ipynb)
+  [(solutions)](https://colab.research.google.com/github/mcgen-ct/tutorials/blob/main/.solutions/other/ajp.ipynb)
 
 ## License
 
